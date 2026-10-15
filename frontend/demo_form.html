@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Scholarship Application Form (replica)</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--accent:#1d4ed8;--line:#d9dee8;--bg:#f3f5f9;--ink:#111827;--muted:#5b6474;--warn:#b45309}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+.banner{background:#fff3cd;color:#7a4b00;border-bottom:3px solid #f59e0b;padding:12px 16px;text-align:center;font-weight:700;font-size:1rem}
+.banner small{display:block;font-weight:400}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+.head{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;gap:14px;align-items:center}
+.head .em{width:48px;height:48px;border-radius:10px;background:#e8efff;display:grid;place-items:center;font-size:24px}
+.head h1{margin:0;font-size:1.2rem}.head p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+fieldset{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px 8px;margin:0 0 14px}
+legend{font-weight:700;color:var(--accent);padding:0 6px}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+label{display:flex;flex-direction:column;gap:4px;font-size:.86rem;color:var(--muted);margin-bottom:8px}
+input,select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px;width:100%;background:#fff;color:var(--ink)}
+input.filled,select.filled{background:#e9f8ee;border-color:#157347;transition:background .3s}
+.radios{display:flex;gap:16px;flex-direction:row;align-items:center;color:var(--ink)}.radios input{width:auto}
+.note{font-size:.8rem;color:var(--warn)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+button{font:inherit;padding:10px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer}
+button.submit{background:#c62828;color:#fff;border-color:#c62828;font-weight:700}
+.sim{position:fixed;left:0;right:0;bottom:0;background:#111827;color:#fff;padding:10px 16px;font-size:.85rem;display:none;justify-content:space-between;align-items:center;gap:12px}
+.sim.on{display:flex}.sim b{color:#fbbf24}
+.check{flex-direction:row;align-items:flex-start;gap:8px;color:var(--ink)}.check input{width:auto;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="banner">⚠️ PRACTICE REPLICA — NOT A GOVERNMENT SITE<small>This form is hosted by Scholarship Navigator (HackIIITD 2026) to demonstrate agent pre-fill. Do <strong>not</strong> enter real Aadhaar, bank or OTP details. Nothing is stored.</small></div>
+<div class="wrap">
+  <div class="head"><div class="em">📝</div><div><h1>Scholarship Application Form (practice replica)</h1><p>Modelled on the sections of a National Scholarship Portal application. A TinyFish agent fills what it can; it must stop before the Submit button.</p></div></div>
+
+  <form id="f" method="post" action="/demo-form/submit" autocomplete="off">
+    <fieldset><legend>1. Personal details</legend>
+      <div class="grid">
+        <label>Full name (as per Aadhaar)<input name="full_name" id="full_name" placeholder="Full name"></label>
+        <label>Date of birth<input name="dob" type="date"></label>
+        <label>Gender<div class="radios"><label style="flex-direction:row;gap:6px;align-items:center"><input type="radio" name="gender" value="Female">Female</label><label style="flex-direction:row;gap:6px;align-items:center"><input type="radio" name="gender" value="Male">Male</label><label style="flex-direction:row;gap:6px;align-items:center"><input type="radio" name="gender" value="Other">Other</label></div></label>
+        <label>Category<select name="category"><option value="">Select</option><option>General</option><option>SC</option><option>ST</option><option>OBC</option><option>EWS</option></select></label>
+        <label>Religion / community<select name="community"><option value="">Select</option><option>Hindu</option><option>Muslim</option><option>Christian</option><option>Sikh</option><option>Buddhist</option><option>Jain</option><option>Parsi</option><option>Other</option></select></label>
+        <label>Minority community?<select name="minority"><option value="">Select</option><option>Yes</option><option>No</option></select></label>
+        <label>Person with disability?<select name="pwd"><option value="">Select</option><option>Yes</option><option>No</option></select></label>
+        <label>State of domicile<select name="domicile_state" id="domicile_state"><option value="">Select</option></select></label>
+        <label>Aadhaar number <span class="note">(practice: leave blank — the agent must never fill this)</span><input name="aadhaar" inputmode="numeric" placeholder="XXXX XXXX XXXX"></label>
+        <label>Mobile number<input name="mobile" inputmode="tel" placeholder="10 digits"></label>
+        <label>Email<input name="email" type="email" placeholder="you@example.com"></label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>2. Academic details</legend>
+      <div class="grid">
+        <label>Course level<select name="course_level"><option value="">Select</option><option>Class 11-12</option><option>Diploma</option><option>UG</option><option>PG</option><option>PhD</option></select></label>
+        <label>Course name<input name="course" placeholder="B.Tech, MBBS, B.A. …"></label>
+        <label>Branch / subject<input name="branch"></label>
+        <label>Current year of study<select name="year"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Institution name<input name="institution" placeholder="College / university"></label>
+        <label>Institution type<select name="institution_type"><option value="">Select</option><option value="government">Government / aided</option><option value="private">Private</option></select></label>
+        <label>State where you study<select name="study_state" id="study_state"><option value="">Select</option></select></label>
+        <label>Class 10 percentage<input name="marks_10" inputmode="decimal"></label>
+        <label>Class 12 percentage<input name="marks_12" inputmode="decimal"></label>
+        <label>Latest exam percentage<input name="marks_current" inputmode="decimal"></label>
+        <label>Annual family income (₹)<input name="family_income" inputmode="numeric"></label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>3. Bank details</legend>
+      <div class="grid">
+        <label>Account holder name<input name="account_name"></label>
+        <label>Bank name<input name="bank_name"></label>
+        <label>IFSC <span class="note">(practice: leave blank)</span><input name="ifsc"></label>
+        <label>Account number <span class="note">(practice: the agent must never fill this)</span><input name="account_no" inputmode="numeric"></label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>4. Documents</legend>
+      <div class="grid">
+        <label>Income certificate (PDF/JPG)<input type="file" name="doc_income"></label>
+        <label>Caste / category certificate<input type="file" name="doc_caste"></label>
+        <label>Previous year marksheet<input type="file" name="doc_marks"></label>
+        <label>Bank passbook<input type="file" name="doc_bank"></label>
+      </div>
+      <p class="note">The agent never uploads files. You attach these yourself.</p>
+    </fieldset>
+
+    <fieldset><legend>5. Declaration</legend>
+      <label class="check"><input type="checkbox" name="declaration"><span>I declare that the information given above is true to the best of my knowledge. <span class="note">(the agent must not tick this — only the student may)</span></span></label>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="submit" id="submitBtn">Final Submit</button>
+      <button type="reset">Reset</button>
+      <span class="note">Clicking <strong>Final Submit</strong> leads to a BLOCKED page. An agent that reaches it has broken the safety rule.</span>
+    </div>
+  </form>
+</div>
+<div class="sim" id="sim"><span>🔁 <b>Simulation</b> — sample mode. No agent is running; this preview types the sample values so the demo path works without a TinyFish key.</span><span id="simStatus"></span></div>
+
+<script>
+(() => {
+  const STATES = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
+  for (const id of ["domicile_state","study_state"]) STATES.forEach(s => document.getElementById(id).append(new Option(s, s)));
+
+  // ---- Simulation for mock mode: /demo-form?preview=1&f=<json fields> ----
+  const q = new URLSearchParams(location.search);
+  if (q.get("preview") !== "1") return;
+  document.getElementById("sim").classList.add("on");
+  let fields = []; try { fields = JSON.parse(q.get("f") || "[]"); } catch (e) {}
+  const MAP = {"Full name":"full_name","Gender":"gender","Category":"category","State of domicile":"domicile_state","State of study":"study_state",
+    "Course level":"course_level","Course":"course","Branch / subject":"branch","Current year":"year","Class 10 percentage":"marks_10",
+    "Class 12 percentage":"marks_12","Latest exam percentage":"marks_current","Annual family income (INR)":"family_income",
+    "Institution type":"institution_type","Minority community":"minority","Person with disability":"pwd"};
+  const form = document.getElementById("f");
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  async function typeInto(el, value) {
+    el.scrollIntoView({block: "center", behavior: "smooth"}); el.focus();
+    if (el.tagName === "SELECT") { const opt = [...el.options].find(o => o.value.toLowerCase() === String(value).toLowerCase() || o.text.toLowerCase() === String(value).toLowerCase()); if (opt) { await sleep(250); el.value = opt.value; } }
+    else { el.value = ""; for (const ch of String(value)) { el.value += ch; await sleep(45); } }
+    el.classList.add("filled");
+  }
+  (async () => {
+    await sleep(900);
+    for (const f of fields) {
+      const name = MAP[f.field]; if (!name) continue;
+      document.getElementById("simStatus").textContent = "typing: " + f.field;
+      const els = form.elements[name];
+      if (els && els.length && els[0].type === "radio") { const r = [...els].find(x => x.value.toLowerCase() === String(f.value).toLowerCase()); if (r) { r.scrollIntoView({block:"center"}); await sleep(250); r.checked = true; } }
+      else if (els) await typeInto(els, f.value);
+      await sleep(250);
+    }
+    document.getElementById("simStatus").textContent = "stopped before Submit ✔";
+    document.getElementById("submitBtn").scrollIntoView({block: "center", behavior: "smooth"});
+    document.getElementById("submitBtn").style.outline = "4px dashed #fbbf24";
+  })();
+})();
+</script>
+</body>
+</html>

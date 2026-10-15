@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scholarship Navigator</title>
+<meta name="description" content="Find every government scheme and private scholarship you qualify for, and let a TinyFish agent pre-fill the form — never submit.">
+<style>
+:root{--accent:#1d4ed8;--accent-soft:#e8efff;--bg:#f6f7fb;--card:#ffffff;--ink:#111827;--muted:#5b6474;--line:#e2e6ee;
+ --ok:#157347;--ok-soft:#e6f6ec;--warn:#9a6700;--warn-soft:#fff6d6;--bad:#b42318;--bad-soft:#fdecea;--gov:#0f766e;--priv:#6d28d9;--radius:14px}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1420;--card:#161c2b;--ink:#e8ecf5;--muted:#9aa5b8;--line:#263044;--accent-soft:#1a2a55;
+ --ok-soft:#10301f;--warn-soft:#3a2d05;--bad-soft:#3a1412}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+a{color:var(--accent)}button{font:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(135deg,var(--accent),#4f46e5);color:#fff;padding:20px 0 26px}
+header .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}.brand .logo{width:42px;height:42px;border-radius:12px;background:#fff2;display:grid;place-items:center;font-size:22px}
+.brand h1{margin:0;font-size:1.35rem;line-height:1.2}.brand p{margin:2px 0 0;opacity:.92;font-size:.95rem}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.2px}
+.pill.mode{background:#fff;color:var(--accent)}.pill.mode.mock{background:#ffe9a8;color:#6b4a00}.pill.mode.replay{background:#d8f3ff;color:#064e70}
+.toolbar{display:flex;gap:8px;align-items:center}
+.ghost{background:#fff2;color:#fff;border:1px solid #fff6;border-radius:999px;padding:6px 12px}
+main{padding:22px 0 60px}
+section.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 2px #0000000a}
+section.card h2{margin:0 0 6px;font-size:1.15rem}.sub{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:12px 14px 6px;margin:0 0 14px;min-width:0}
+legend{padding:0 6px;font-weight:600;font-size:.9rem;color:var(--accent)}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}@media(min-width:900px){.grid.c3{grid-template-columns:1fr 1fr 1fr}}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--muted);margin-bottom:8px}
+label.f span.req{color:var(--bad)}
+input,select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);width:100%}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.check{display:flex;align-items:center;gap:8px;font-size:.92rem;color:var(--ink);margin:6px 0}.check input{width:auto}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:600}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn.sec{background:var(--accent-soft);color:var(--accent)}.btn.sm{padding:7px 12px;font-size:.88rem}
+.btn.danger{background:var(--bad-soft);color:var(--bad)}
+.samples{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:.85rem}
+.chip:hover{border-color:var(--accent)}
+.hidden{display:none!important}
+/* progress */
+.steps{display:grid;gap:8px;grid-template-columns:repeat(5,1fr);margin:10px 0 14px}
+.step{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.82rem;color:var(--muted);background:var(--bg)}
+.step b{display:block;color:var(--ink);font-size:.86rem}.step.active{border-color:var(--accent);background:var(--accent-soft)}.step.done{border-color:var(--ok);background:var(--ok-soft)}
+.step.active b::after{content:" …";animation:blink 1s infinite}@keyframes blink{50%{opacity:.3}}
+@media(max-width:640px){.steps{grid-template-columns:1fr 1fr}}
+.log{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;max-height:160px;overflow:auto;white-space:pre-wrap;color:var(--muted)}
+/* results */
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.9rem}.stat b{font-size:1.1rem;margin-right:4px}
+.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0 16px}
+.cards{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.sch{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card);display:flex;flex-direction:column;gap:10px;position:relative}
+.sch.closed{opacity:.72}.sch header{all:unset;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.sch h3{margin:0;font-size:1.02rem;line-height:1.3}.sch .prov{color:var(--muted);font-size:.86rem;margin:2px 0 0}
+.score{min-width:58px;text-align:center;border-radius:12px;padding:6px 8px;background:var(--accent-soft);color:var(--accent);font-weight:700;line-height:1.1}.score small{display:block;font-weight:500;font-size:.68rem}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.b{font-size:.74rem;font-weight:600;padding:3px 8px;border-radius:999px;border:1px solid transparent}
+.b.gov{background:#d9f3f0;color:var(--gov)}.b.priv{background:#ece6fb;color:var(--priv)}.b.sample{background:var(--warn-soft);color:var(--warn)}
+.b.agent{background:var(--accent-soft);color:var(--accent)}.b.v0{background:var(--ok-soft);color:var(--ok)}.b.v1{background:var(--warn-soft);color:var(--warn)}
+.b.v2{background:var(--bg);color:var(--muted);border-color:var(--line)}.b.v3{background:var(--bad-soft);color:var(--bad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.9rem}.kv dt{color:var(--muted)}.kv dd{margin:0}
+.dl.soon{color:var(--bad);font-weight:700}.dl.closed{color:var(--muted);text-decoration:line-through}
+ul.why{margin:0;padding:0;list-style:none;font-size:.88rem}ul.why li{padding-left:22px;position:relative;margin:2px 0}
+ul.why li::before{position:absolute;left:0;font-weight:700}ul.why li.ok::before{content:"✓";color:var(--ok)}ul.why li.bad::before{content:"✗";color:var(--bad)}ul.why li.warn::before{content:"⚠";color:var(--warn)}
+.docs{display:flex;flex-wrap:wrap;gap:5px}.docs span{font-size:.76rem;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.sch footer{all:unset;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px;border-top:1px dashed var(--line);font-size:.84rem}
+.verify{color:var(--muted);font-size:.78rem}
+details summary{cursor:pointer;color:var(--accent);font-size:.86rem}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+/* checklist */
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600;font-size:.8rem}
+td.c{text-align:center}.small{font-size:.8rem;color:var(--muted)}
+/* prefill */
+.pf{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:900px){.pf{grid-template-columns:3fr 2fr}}
+.browser{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;min-height:360px;position:relative}
+.browser .bar{background:#1f2937;color:#cbd5e1;font-size:.78rem;padding:6px 10px;display:flex;gap:8px;align-items:center}
+.browser .bar .dot{width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block}.browser .bar .dot.live{background:#22c55e;animation:blink 1.2s infinite}
+.browser iframe{width:100%;height:420px;border:0;background:#fff}.browser .ph{color:#cbd5e1;padding:40px 20px;text-align:center;font-size:.9rem}
+.two{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.col{border:1px solid var(--line);border-radius:12px;padding:12px 14px}.col h4{margin:0 0 8px;font-size:.95rem}.col ul{margin:0;padding-left:18px;font-size:.88rem}
+.col.ok{background:var(--ok-soft)}.col.todo{background:var(--warn-soft)}
+.notice{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 12px;border-radius:8px;font-size:.88rem;margin:0 0 12px}
+.notice.warn{border-color:var(--warn);background:var(--warn-soft)}.notice.bad{border-color:var(--bad);background:var(--bad-soft)}
+footer.site{color:var(--muted);font-size:.82rem;padding:20px 0;border-top:1px solid var(--line)}
+footer.site ul{margin:6px 0 0;padding-left:18px}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">🎓</div>
+      <div>
+        <h1 data-i18n="title">Scholarship Navigator</h1>
+        <p data-i18n="tagline">Describe yourself once. Find every scheme you qualify for. Let an agent pre-fill the form — you submit.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <span id="modePill" class="pill mode">…</span>
+      <span class="pill" style="background:#fff2">Powered by TinyFish</span>
+      <button id="langBtn" class="ghost" aria-label="Toggle Hindi">हिंदी</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 1. PROFILE -->
+  <section class="card" id="profile-section">
+    <h2 data-i18n="aboutYou">1 · Tell us about yourself</h2>
+    <p class="sub" data-i18n="aboutYouSub">Nothing you type is stored on a server. It is used once to search and discarded.</p>
+    <div class="samples" id="samples"><span class="small" data-i18n="trySample">Try a sample student:</span></div>
+    <form id="profileForm" autocomplete="off">
+      <fieldset>
+        <legend data-i18n="secPersonal">About you</legend>
+        <div class="grid c3">
+          <label class="f"><span data-i18n="name">First name (for the form)</span><input name="name" placeholder="Priya"></label>
+          <label class="f"><span data-i18n="gender">Gender <span class="req">*</span></span>
+            <select name="gender" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></label>
+          <label class="f"><span data-i18n="category">Category <span class="req">*</span></span>
+            <select name="category" required><option value="">Select</option><option>General</option><option>SC</option><option>ST</option><option>OBC</option><option>EWS</option></select></label>
+        </div>
+        <div class="grid c3">
+          <label class="check"><input type="checkbox" name="minority"><span data-i18n="minority">Minority community (Muslim, Christian, Sikh, Buddhist, Jain, Parsi)</span></label>
+          <label class="check"><input type="checkbox" name="pwd"><span data-i18n="pwd">Person with disability (40%+)</span></label>
+          <label class="check"><input type="checkbox" name="single_girl_child"><span data-i18n="sgc">Single girl child</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="secWhere">Where you are</legend>
+        <div class="grid c3">
+          <label class="f"><span data-i18n="state">State where you study <span class="req">*</span></span><select name="state" required id="stateSel"></select></label>
+          <label class="f"><span data-i18n="domicile">Home (domicile) state</span><select name="domicile_state" id="domSel"><option value="">Same as above</option></select></label>
+          <label class="f"><span data-i18n="inst">Institution type</span>
+            <select name="institution_type"><option value="">Not sure</option><option value="government">Government / aided</option><option value="private">Private</option></select></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="secCourse">Your course &amp; marks</legend>
+        <div class="grid c3">
+          <label class="f"><span data-i18n="level">Course level <span class="req">*</span></span>
+            <select name="course_level" required><option>UG</option><option>PG</option><option>Diploma</option><option>PhD</option><option value="School">Class 11–12</option></select></label>
+          <label class="f"><span data-i18n="course">Course <span class="req">*</span></span><input name="course" list="courses" placeholder="B.Tech, MBBS, B.A., B.Com…" required>
+            <datalist id="courses"><option>B.Tech</option><option>B.E.</option><option>MBBS</option><option>BDS</option><option>B.Sc</option><option>B.A.</option><option>B.Com</option><option>BBA</option><option>BCA</option><option>LLB</option><option>B.Pharm</option><option>B.Ed</option><option>Diploma</option><option>M.Tech</option><option>M.Sc</option><option>M.A.</option><option>MBA</option><option>Nursing</option></datalist></label>
+          <label class="f"><span data-i18n="branch">Branch / subject</span><input name="branch" placeholder="CSE, History, Commerce…"></label>
+        </div>
+        <div class="grid c3">
+          <label class="f"><span data-i18n="year">Current year</span><select name="year"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+          <label class="f"><span data-i18n="m10">Class 10 %</span><input name="marks_10" type="number" min="0" max="100" step="0.1" placeholder="e.g. 88"></label>
+          <label class="f"><span data-i18n="m12">Class 12 %</span><input name="marks_12" type="number" min="0" max="100" step="0.1" placeholder="e.g. 85"></label>
+        </div>
+        <div class="grid c3">
+          <label class="f"><span data-i18n="mcur">Latest exam % (CGPA × 10)</span><input name="marks_current" type="number" min="0" max="100" step="0.1" placeholder="e.g. 78"></label>
+          <label class="f"><span data-i18n="income">Annual family income (₹) <span class="req">*</span></span><input name="family_income" type="number" min="0" step="1000" placeholder="e.g. 250000" required></label>
+        </div>
+      </fieldset>
+      <div class="row">
+        <button class="btn" id="findBtn" type="submit" data-i18n="find">Find my scholarships</button>
+        <button class="btn sec" id="resetBtn" type="button" data-i18n="reset">Clear</button>
+        <span class="small" data-i18n="free">Searching is free · extraction uses TinyFish agent credits (capped)</span>
+      </div>
+    </form>
+  </section>
+
+  <!-- 2. PROGRESS -->
+  <section class="card hidden" id="progress-section">
+    <h2 data-i18n="progress">2 · Searching the web for you</h2>
+    <p class="sub" id="progressSub">TinyFish Search → Fetch → Agent extraction → eligibility matching</p>
+    <div class="steps">
+      <div class="step" data-step="searching"><b data-i18n="sSearch">Searching</b><span id="st-searching">queries</span></div>
+      <div class="step" data-step="found"><b data-i18n="sFound">Found</b><span id="st-found">pages</span></div>
+      <div class="step" data-step="kept"><b data-i18n="sKept">Kept</b><span id="st-kept">scholarship pages</span></div>
+      <div class="step" data-step="extracting"><b data-i18n="sExtract">Extracting</b><span id="st-extracting">0/0 via agent</span></div>
+      <div class="step" data-step="ranked"><b data-i18n="sRank">Ranked</b><span id="st-ranked">by fit</span></div>
+    </div>
+    <div class="log" id="log" aria-live="polite"></div>
+  </section>
+
+  <!-- 3. RESULTS -->
+  <section class="card hidden" id="results-section">
+    <h2 data-i18n="results">3 · Your matches</h2>
+    <p class="sub" id="resultsSub"></p>
+    <div id="modeNotice"></div>
+    <div class="summary" id="summary"></div>
+    <div class="filters">
+      <label class="check"><input type="checkbox" id="fEligible"><span data-i18n="fEligible">Likely eligible only</span></label>
+      <label class="check"><input type="checkbox" id="fGov"><span data-i18n="fGov">Government only</span></label>
+      <label class="check"><input type="checkbox" id="fSoon"><span data-i18n="fSoon">Closing within 14 days</span></label>
+      <button class="btn sec sm" id="icsBtn" type="button" data-i18n="ics">📅 Add deadlines to calendar (.ics)</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="empty hidden" id="emptyResults" data-i18n="empty">No schemes match these filters.</div>
+  </section>
+
+  <!-- 4. CHECKLIST -->
+  <section class="card hidden" id="checklist-section">
+    <h2 data-i18n="checklist">4 · Documents to collect</h2>
+    <p class="sub" data-i18n="checklistSub">Combined across the schemes you are likely or possibly eligible for (open deadlines only). Tick what you already have.</p>
+    <table id="checklistTable"><thead><tr><th>✓</th><th data-i18n="doc">Document</th><th class="c" data-i18n="needed">Needed by</th><th data-i18n="schemes">Schemes</th></tr></thead><tbody></tbody></table>
+  </section>
+
+  <!-- 5. PREFILL -->
+  <section class="card hidden" id="prefill-section">
+    <h2 data-i18n="prefill">5 · Pre-fill the application (agent stops before Submit)</h2>
+    <p class="sub" id="prefillSub"></p>
+    <div class="notice warn" data-i18n="prefillNotice">Real government portals (NSP, ePASS, MahaDBT) require login + OTP before the form, so the agent will correctly stop early there. Use the practice replica to see the full flow, or try a public CSR form.</div>
+    <div class="grid" style="margin-bottom:12px">
+      <label class="f"><span data-i18n="target">Form to fill</span><select id="pfTarget"></select></label>
+      <label class="f"><span data-i18n="customUrl">…or paste a public form URL</span><input id="pfUrl" placeholder="https://"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="pfConsent"><span data-i18n="consent">I understand my details above are sent to the TinyFish agent to type into this form. The agent never clicks Submit, never enters OTPs, IDs or bank numbers, never uploads files.</span></label>
+    <div class="row" style="margin:10px 0 14px">
+      <button class="btn" id="pfStart" type="button" disabled data-i18n="startPrefill">▶ Start pre-fill</button>
+      <button class="btn danger sm hidden" id="pfStop" type="button">Stop</button>
+      <span class="small" id="pfStatus"></span>
+    </div>
+    <div class="pf">
+      <div class="browser" id="browser">
+        <div class="bar"><span class="dot" id="liveDot"></span><span id="liveLabel">Live browser — waiting for STREAMING_URL</span><a id="liveOpen" class="hidden" target="_blank" rel="noopener" style="margin-left:auto;color:#93c5fd">open ↗</a></div>
+        <div class="ph" id="browserPh">The agent's browser appears here once the run starts.</div>
+        <iframe id="liveFrame" class="hidden" title="Live agent browser" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+      </div>
+      <div>
+        <div class="log" id="pfLog" style="max-height:420px;min-height:200px" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="two hidden" id="pfResult" style="margin-top:14px">
+      <div class="col ok"><h4 data-i18n="filledFor">✅ Filled for you</h4><ul id="pfFilled"></ul></div>
+      <div class="col todo"><h4 data-i18n="youStill">✍️ You still need to do</h4><ul id="pfManual"></ul><p class="small" id="pfStopped"></p><p class="small"><a href="#checklist-section" data-i18n="seeDocs">See the documents checklist ↑</a></p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <strong data-i18n="safety">Safety &amp; honesty rules</strong>
+  <ul>
+    <li data-i18n="r1">The agent never submits, pays, creates accounts, enters passwords/OTP/captcha, or uploads documents. Only you submit.</li>
+    <li data-i18n="r2">Results marked <em>Sample</em> are illustrative demo data. Agent-extracted results show their source link — always verify on the official portal.</li>
+    <li data-i18n="r3">Caste, income, gender and disability are sensitive personal data (India DPDP Act, 2023). Your profile is never stored or logged.</li>
+  </ul>
+  <p>Team Twin Paradox · HackIIITD 2026 · presented by TinyFish · <a href="/demo-form" target="_blank" rel="noopener">practice replica form</a> · <a href="/api/health">status</a></p>
+</div></footer>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const STATES = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
+const HI = {title:"स्कॉलरशिप नेविगेटर",tagline:"एक बार अपनी जानकारी दें। हर योग्य योजना खोजें। एजेंट फ़ॉर्म भरता है — सबमिट आप करते हैं।",
+ aboutYou:"1 · अपने बारे में बताएं",aboutYouSub:"आपकी जानकारी सर्वर पर सेव नहीं होती। एक बार खोज के लिए उपयोग होकर हट जाती है।",trySample:"उदाहरण छात्र चुनें:",
+ secPersonal:"आपके बारे में",name:"पहला नाम (फ़ॉर्म के लिए)",gender:"लिंग *",category:"श्रेणी *",minority:"अल्पसंख्यक समुदाय",pwd:"दिव्यांग (40%+)",sgc:"इकलौती बेटी",
+ secWhere:"आप कहाँ हैं",state:"पढ़ाई का राज्य *",domicile:"मूल (निवास) राज्य",inst:"संस्थान का प्रकार",secCourse:"कोर्स और अंक",level:"कोर्स स्तर *",course:"कोर्स *",branch:"ब्रांच / विषय",
+ year:"वर्तमान वर्ष",m10:"कक्षा 10 %",m12:"कक्षा 12 %",mcur:"अंतिम परीक्षा %",income:"वार्षिक पारिवारिक आय (₹) *",find:"मेरी स्कॉलरशिप खोजें",reset:"साफ़ करें",
+ free:"खोज मुफ़्त है · निष्कर्षण में TinyFish एजेंट क्रेडिट लगते हैं (सीमित)",progress:"2 · आपके लिए वेब खोज रहे हैं",sSearch:"खोज",sFound:"मिले",sKept:"रखे",sExtract:"निष्कर्षण",sRank:"रैंक",
+ results:"3 · आपके मैच",fEligible:"केवल संभावित योग्य",fGov:"केवल सरकारी",fSoon:"14 दिन में बंद",ics:"📅 कैलेंडर में डेडलाइन जोड़ें (.ics)",empty:"इन फ़िल्टर से कोई योजना नहीं मिली।",
+ checklist:"4 · ज़रूरी दस्तावेज़",checklistSub:"जिन योजनाओं के लिए आप योग्य हो सकते हैं, उनके सभी दस्तावेज़ एक साथ (केवल खुली डेडलाइन)।",doc:"दस्तावेज़",needed:"कितनी योजनाओं में",schemes:"योजनाएँ",
+ prefill:"5 · आवेदन प्री-फ़िल (एजेंट सबमिट से पहले रुकता है)",prefillNotice:"सरकारी पोर्टल (NSP, ePASS, MahaDBT) फ़ॉर्म से पहले लॉगइन + OTP माँगते हैं, इसलिए एजेंट वहाँ सही तरीके से पहले रुक जाएगा। पूरा प्रवाह देखने के लिए अभ्यास प्रतिकृति फ़ॉर्म चुनें।",
+ target:"कौन सा फ़ॉर्म",customUrl:"…या सार्वजनिक फ़ॉर्म URL पेस्ट करें",consent:"मैं समझता/समझती हूँ कि मेरी जानकारी TinyFish एजेंट को फ़ॉर्म भरने के लिए भेजी जाएगी। एजेंट कभी सबमिट नहीं करता, OTP/आधार/बैंक नंबर नहीं भरता, फ़ाइल अपलोड नहीं करता।",
+ startPrefill:"▶ प्री-फ़िल शुरू करें",filledFor:"✅ आपके लिए भरा गया",youStill:"✍️ आपको अभी करना है",seeDocs:"दस्तावेज़ सूची देखें ↑",safety:"सुरक्षा और ईमानदारी के नियम",
+ r1:"एजेंट कभी सबमिट, भुगतान, खाता निर्माण, पासवर्ड/OTP/कैप्चा या दस्तावेज़ अपलोड नहीं करता। सबमिट केवल आप करते हैं।",r2:"'Sample' चिह्नित परिणाम डेमो डेटा हैं। एजेंट से निकाले गए परिणामों में स्रोत लिंक है — आधिकारिक पोर्टल पर ज़रूर जाँचें।",
+ r3:"जाति, आय, लिंग और दिव्यांगता संवेदनशील डेटा हैं (DPDP अधिनियम 2023)। आपकी प्रोफ़ाइल कभी सेव या लॉग नहीं होती।"};
+const EN = {}; $$("[data-i18n]").forEach(el => EN[el.dataset.i18n] = el.innerHTML);
+let lang = "en";
+$("#langBtn").onclick = () => { lang = lang === "en" ? "hi" : "en"; $("#langBtn").textContent = lang === "en" ? "हिंदी" : "English";
+  $$("[data-i18n]").forEach(el => { const k = el.dataset.i18n; if (lang === "hi" && HI[k]) el.innerHTML = HI[k]; else el.innerHTML = EN[k]; }); };
+
+// ---------- state ----------
+const S = { profile: null, results: [], checklist: [], meta: {}, mode: "mock", abort: null, pfAbort: null };
+const VCLASS = {"Likely eligible":"v0","Possibly eligible":"v1","Unlikely":"v2","Not eligible":"v3"};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// ---------- boot ----------
+for (const sel of [$("#stateSel"), $("#domSel")]) STATES.forEach(s => sel.append(new Option(s, s)));
+$("#stateSel").value = "Telangana";
+fetch("/api/health").then(r => r.json()).then(h => {
+  S.mode = h.mode; const p = $("#modePill"); p.className = "pill mode " + h.mode;
+  p.textContent = h.mode === "live" ? "● Live · TinyFish" : h.mode === "replay" ? "▶ Replay of a recorded run" : "Sample data mode";
+}).catch(() => { $("#modePill").textContent = "offline"; });
+fetch("/api/samples").then(r => r.json()).then(samples => {
+  for (const [k, v] of Object.entries(samples)) { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = v.label;
+    b.onclick = () => fillForm(v); $("#samples").append(b); }
+}).catch(() => {});
+
+function fillForm(v) { const f = $("#profileForm");
+  for (const el of f.elements) { if (!el.name) continue; if (el.type === "checkbox") el.checked = !!v[el.name]; else el.value = v[el.name] ?? ""; }
+  if (v.domicile_state === v.state) $("#domSel").value = ""; }
+$("#resetBtn").onclick = () => { $("#profileForm").reset(); $("#stateSel").value = "Telangana"; };
+
+function readProfile() { const fd = new FormData($("#profileForm")), p = {};
+  for (const el of $("#profileForm").elements) { if (!el.name) continue; p[el.name] = el.type === "checkbox" ? el.checked : (fd.get(el.name) || "").toString().trim(); }
+  if (!p.domicile_state) p.domicile_state = p.state; return p; }
+
+// ---------- SSE over fetch ----------
+async function streamSSE(url, body, onEvent, signal) {
+  const res = await fetch(url, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body), signal });
+  if (!res.ok || !res.body) throw new Error("HTTP " + res.status);
+  const reader = res.body.getReader(), dec = new TextDecoder(); let buf = "";
+  for (;;) { const {value, done} = await reader.read(); if (done) break; buf += dec.decode(value, {stream: true});
+    let i; while ((i = buf.indexOf("\n\n")) >= 0) { const chunk = buf.slice(0, i); buf = buf.slice(i + 2);
+      for (const line of chunk.split("\n")) if (line.startsWith("data: ")) { try { onEvent(JSON.parse(line.slice(6))); } catch (e) { console.warn(e); } } } }
+}
+
+// ---------- discovery ----------
+const stepEls = Object.fromEntries($$(".step").map(e => [e.dataset.step, e]));
+const ORDER = ["searching","found","kept","extracting","ranked"];
+function setStep(stage) { const i = ORDER.indexOf(stage); ORDER.forEach((s, j) => { stepEls[s].classList.toggle("done", j < i); stepEls[s].classList.toggle("active", j === i); }); }
+function log(el, msg) { el.textContent += (el.textContent ? "\n" : "") + new Date().toLocaleTimeString() + "  " + msg; el.scrollTop = el.scrollHeight; }
+
+$("#profileForm").addEventListener("submit", async ev => {
+  ev.preventDefault(); if (S.abort) S.abort.abort();
+  S.profile = readProfile(); S.results = []; S.checklist = [];
+  $("#findBtn").disabled = true; $("#log").textContent = ""; $("#cards").innerHTML = ""; $("#modeNotice").innerHTML = "";
+  for (const id of ["progress-section","results-section"]) $("#" + id).classList.remove("hidden");
+  $("#checklist-section").classList.add("hidden"); $("#prefill-section").classList.add("hidden");
+  $("#resultsSub").textContent = "Results appear as each page is read…"; ORDER.forEach(s => stepEls[s].className = "step");
+  $("#progress-section").scrollIntoView({behavior: "smooth", block: "start"});
+  S.abort = new AbortController();
+  try {
+    await streamSSE("/api/discover/stream", {profile: S.profile}, onDiscoverEvent, S.abort.signal);
+  } catch (e) { log($("#log"), "Connection problem: " + e.message + " — retrying with plain JSON…");
+    try { const r = await fetch("/api/discover", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({profile: S.profile})}); const d = await r.json();
+      onDiscoverEvent({stage:"ranked", results: d.results || [], checklist: d.checklist || [], meta: d.meta || {}, message: "Ranked"}); } catch (e2) { log($("#log"), "Failed: " + e2.message); } }
+  $("#findBtn").disabled = false;
+});
+
+function onDiscoverEvent(ev) {
+  if (ev.stage === "end") return;
+  if (ev.message) log($("#log"), ev.message);
+  switch (ev.stage) {
+    case "searching": setStep("searching"); $("#st-searching").textContent = ev.queries.length + " queries"; log($("#log"), "  " + ev.queries.join("\n  ")); break;
+    case "found": setStep("found"); $("#st-found").textContent = ev.count + " pages"; break;
+    case "kept": setStep("kept"); $("#st-kept").textContent = ev.count + " scholarship pages" + (ev.needs_agent ? ` · ${ev.needs_agent} need a real browser` : ""); break;
+    case "extracting": setStep("extracting"); $("#st-extracting").textContent = `${ev.done}/${ev.total} via agent`;
+      if (ev.scheme) { const i = S.results.findIndex(r => r.name === ev.scheme.name); if (i >= 0) S.results[i] = ev.scheme; else S.results.push(ev.scheme); renderCards(); } break;
+    case "ranked": setStep("ranked"); stepEls.ranked.classList.add("done"); stepEls.ranked.classList.remove("active");
+      S.results = ev.results; S.checklist = ev.checklist; S.meta = ev.meta || {}; renderAll(); break;
+    case "error": $("#modeNotice").innerHTML = `<div class="notice bad">${esc(ev.message)}</div>`; break;
+  }
+}
+
+function renderAll() {
+  const m = S.meta, open = S.results.filter(r => !r.match.deadline.closed);
+  const likely = open.filter(r => r.match.verdict === "Likely eligible").length, soon = open.filter(r => r.match.deadline.days_left != null && r.match.deadline.days_left <= 14).length;
+  $("#summary").innerHTML = `<div class="stat"><b>${S.results.length}</b> schemes found</div><div class="stat"><b>${likely}</b> likely eligible</div><div class="stat"><b>${soon}</b> closing within 14 days</div>` +
+    (m.seconds != null ? `<div class="stat"><b>${m.seconds}s</b> discovery</div>` : "") + (m.agent_runs != null ? `<div class="stat"><b>${m.agent_runs}</b> agent runs · ${m.cache_hits || 0} cached</div>` : "");
+  $("#resultsSub").textContent = m.mode === "live" ? "Extracted live by TinyFish agents from the pages found. Verify each on the official portal." : "";
+  if (m.sample) $("#modeNotice").innerHTML = `<div class="notice warn"><strong>Sample data.</strong> ${m.mode === "replay" ? "This is a replay of a recorded run." : "No TinyFish key / MOCK=1 — showing labelled sample schemes."} Amounts and deadlines are illustrative — verify on the official portal.</div>`;
+  else if (m.mode === "replay") $("#modeNotice").innerHTML = `<div class="notice"><strong>Replay.</strong> Showing a recorded live run (real TinyFish results, recorded ${m.recorded_from === "live" ? "from a live session" : ""}).</div>`;
+  if (m.skipped_for_budget) $("#modeNotice").innerHTML += `<div class="notice">${m.skipped_for_budget} more pages were found but not extracted to protect agent credits (TOP_K). Raise TOP_K to read them.</div>`;
+  if (!S.results.length) $("#modeNotice").innerHTML += `<div class="notice bad">No schemes found for this profile. Try fewer restrictions (e.g. leave branch blank) or check the sample students.</div>`;
+  renderCards(); renderChecklist(); setupPrefill();
+}
+
+function visible() { const e = $("#fEligible").checked, g = $("#fGov").checked, s = $("#fSoon").checked;
+  return S.results.filter(r => (!e || r.match.verdict === "Likely eligible") && (!g || r.source_type === "government") &&
+    (!s || (r.match.deadline.days_left != null && r.match.deadline.days_left <= 14 && !r.match.deadline.closed))); }
+["fEligible","fGov","fSoon"].forEach(id => $("#" + id).onchange = renderCards);
+
+function renderCards() {
+  const list = visible(); $("#emptyResults").classList.toggle("hidden", list.length > 0);
+  $("#cards").innerHTML = list.map((r, idx) => {
+    const m = r.match, dl = m.deadline, soon = dl.days_left != null && dl.days_left <= 14 && !dl.closed;
+    const why = [...m.reasons.map(x => `<li class="ok">${esc(x)}</li>`), ...m.blockers.map(x => `<li class="bad">${esc(x)}</li>`), ...m.cautions.map(x => `<li class="warn">${esc(x)}</li>`)].join("");
+    const docs = (r.documents_required || []).map(d => `<span>${esc(d)}</span>`).join("") || `<span class="small">Not listed on the page</span>`;
+    const src = r.source_url || r.application_url || "#";
+    return `<article class="sch ${dl.closed ? "closed" : ""}" data-idx="${idx}">
+      <header><div><h3>${esc(r.name)}</h3><p class="prov">${esc(r.provider || "")}</p></div><div class="score">${m.score}<small>match</small></div></header>
+      <div class="badges"><span class="b ${r.source_type === "government" ? "gov" : "priv"}">${r.source_type === "government" ? "🏛 Government" : "🏢 Private / CSR"}</span>
+        <span class="b ${VCLASS[m.verdict] || "v2"}">${esc(m.verdict)}</span>${r.sample ? '<span class="b sample">Sample</span>' : '<span class="b agent">Agent-extracted</span>'}${r.needs_agent ? '<span class="b agent" title="Fetch could not read this page; a real browser agent was used">JS-only page</span>' : ""}</div>
+      <dl class="kv"><dt>Amount</dt><dd>${esc(r.amount || "Not stated")}</dd><dt>Deadline</dt><dd class="dl ${dl.closed ? "closed" : soon ? "soon" : ""}">${esc(dl.label)}</dd></dl>
+      <ul class="why">${why}</ul>
+      <details><summary>Documents required (${(r.documents_required || []).length})</summary><div class="docs" style="margin-top:6px">${docs}</div>${r.notes ? `<p class="small">${esc(r.notes)}</p>` : ""}</details>
+      <footer><span><a href="${esc(src)}" target="_blank" rel="noopener">Official page ↗</a> <span class="verify">· verify on the official portal</span></span>
+        ${dl.closed ? "" : `<button class="btn sm" data-prefill="${idx}">Pre-fill ▸</button>`}</footer></article>`; }).join("");
+  $$("[data-prefill]").forEach(b => b.onclick = () => openPrefill(visible()[+b.dataset.prefill]));
+}
+
+function renderChecklist() {
+  const tb = $("#checklistTable tbody"); tb.innerHTML = "";
+  if (!S.checklist.length) { $("#checklist-section").classList.add("hidden"); return; }
+  $("#checklist-section").classList.remove("hidden");
+  for (const c of S.checklist) { const tr = document.createElement("tr"); const id = "doc-" + c.document.replace(/\W+/g, "-");
+    tr.innerHTML = `<td><input type="checkbox" id="${id}"></td><td><label for="${id}">${esc(c.document)}</label></td><td class="c">${c.count}</td><td class="small">${c.schemes.map(esc).join(" · ")}</td>`; tb.append(tr); }
+}
+
+$("#icsBtn").onclick = async () => { const r = await fetch("/api/calendar", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({results: S.results})});
+  const n = r.headers.get("X-Event-Count"); const blob = await r.blob(); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "scholarship-deadlines.ics"; a.click();
+  URL.revokeObjectURL(a.href); if (n === "0") alert("No open deadlines with a date to add."); };
+
+// ---------- pre-fill ----------
+function setupPrefill() { const sel = $("#pfTarget"); sel.innerHTML = "";
+  sel.append(new Option("Practice replica form (hosted by us — safe to demo)", "/demo-form"));
+  for (const r of S.results) if (!r.match.deadline.closed && (r.application_url || r.source_url)) sel.append(new Option(`${r.name} — official portal`, r.application_url || r.source_url));
+  $("#prefill-section").classList.remove("hidden"); }
+function openPrefill(r) { setupPrefill(); const url = r.application_url || r.source_url; const opt = [...$("#pfTarget").options].find(o => o.value === url); if (opt) opt.selected = true;
+  $("#prefillSub").textContent = `Selected: ${r.name}. Government portals need login/OTP first — pick the practice replica to watch the whole flow.`;
+  $("#prefill-section").scrollIntoView({behavior:"smooth"}); }
+$("#pfConsent").onchange = () => $("#pfStart").disabled = !$("#pfConsent").checked;
+$("#pfStop").onclick = () => { if (S.pfAbort) S.pfAbort.abort(); };
+
+$("#pfStart").onclick = async () => {
+  const url = ($("#pfUrl").value || "").trim() || $("#pfTarget").value; const opt = $("#pfTarget").selectedOptions[0];
+  const schemeName = ($("#pfUrl").value ? "the scholarship" : (opt ? opt.text.split(" — ")[0] : "the scholarship"));
+  $("#pfLog").textContent = ""; $("#pfResult").classList.add("hidden"); $("#pfFilled").innerHTML = ""; $("#pfManual").innerHTML = "";
+  $("#liveFrame").classList.add("hidden"); $("#browserPh").classList.remove("hidden"); $("#liveDot").classList.remove("live"); $("#liveOpen").classList.add("hidden");
+  $("#liveLabel").textContent = "Live browser — waiting for STREAMING_URL"; $("#pfStart").disabled = true; $("#pfStop").classList.remove("hidden"); $("#pfStatus").textContent = "Running…";
+  S.pfAbort = new AbortController();
+  try { await streamSSE("/api/prefill", {url, profile: S.profile || readProfile(), scheme_name: schemeName}, onPrefillEvent, S.pfAbort.signal); }
+  catch (e) { log($("#pfLog"), e.name === "AbortError" ? "Stopped by you." : "Connection problem: " + e.message); }
+  $("#pfStart").disabled = false; $("#pfStop").classList.add("hidden"); if ($("#pfStatus").textContent === "Running…") $("#pfStatus").textContent = "Ended.";
+};
+
+function onPrefillEvent(ev) {
+  if (ev.type === "END" || ev.type === "HEARTBEAT") return;
+  if (ev.message) log($("#pfLog"), `[${ev.type}] ${ev.message}`);
+  if (ev.type === "STREAMING_URL" && ev.streaming_url) { const u = ev.streaming_url; $("#liveDot").classList.add("live"); $("#liveLabel").textContent = "Live browser";
+    if (/^(https?:)?\/\//.test(u) || u.startsWith("/")) { $("#liveFrame").src = u; $("#liveFrame").classList.remove("hidden"); $("#browserPh").classList.add("hidden"); $("#liveOpen").href = u; $("#liveOpen").classList.remove("hidden"); }
+    else { $("#browserPh").textContent = "Live stream URL received (" + u.slice(0, 40) + "…) — open it in the TinyFish dashboard."; } }
+  if (ev.type === "ERROR") { $("#pfStatus").textContent = "Failed"; $("#browserPh").textContent = ev.message; }
+  if (ev.type === "COMPLETE") { $("#pfStatus").textContent = ev.status === "COMPLETED" ? "Done — stopped before Submit ✅" : "Stopped: " + (ev.error || ev.status);
+    const r = ev.result || {}; $("#pfResult").classList.remove("hidden");
+    $("#pfFilled").innerHTML = (r.filled || []).map(f => `<li><strong>${esc(f.field)}</strong>: ${esc(f.value)}</li>`).join("") || "<li>Nothing could be filled (login/OTP wall?)</li>";
+    $("#pfManual").innerHTML = (r.needs_manual_input || []).map(f => `<li><strong>${esc(f.field)}</strong> — ${esc(f.reason)}</li>`).join("") || "<li>Nothing else — review and submit yourself.</li>";
+    $("#pfStopped").textContent = r.stopped_before ? "Stopped before: " + r.stopped_before : ""; if (!$("#liveDot").classList.contains("live")) $("#browserPh").textContent = "No live browser URL was provided for this run."; }
+}
+})();
+</script>
+</body>
+</html>

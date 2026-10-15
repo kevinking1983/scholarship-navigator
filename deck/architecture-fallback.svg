@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <style>
+      .box{fill:#ffffff;stroke:#1d4ed8;stroke-width:2;rx:12}
+      .tf{fill:#e8efff;stroke:#1d4ed8;stroke-width:2.5}
+      .free{fill:#e6f6ec;stroke:#157347;stroke-width:2}
+      .store{fill:#f6f7fb;stroke:#64748b;stroke-width:1.5;stroke-dasharray:6 4}
+      .t{font-size:17px;font-weight:700;fill:#111827}
+      .s{font-size:13px;fill:#334155}
+      .lbl{font-size:12.5px;fill:#475569;font-style:italic}
+      .lane{fill:none;stroke:#cbd5e1;stroke-width:1.5;stroke-dasharray:8 6}
+      .lanet{font-size:14px;fill:#64748b;font-weight:600;letter-spacing:.5px}
+      .arrow{stroke:#475569;stroke-width:2;fill:none;marker-end:url(#a)}
+      .arrowd{stroke:#9a6700;stroke-width:2;fill:none;stroke-dasharray:7 5;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="1600" height="760" fill="#ffffff"/>
+  <text x="40" y="44" font-size="26" font-weight="800" fill="#111827">Scholarship Navigator — architecture</text>
+  <text x="40" y="70" class="s">Browser UI → FastAPI → TinyFish Search → Fetch → Agent (parallel extraction) → Matcher → results · Agent stream → live browser → pre-fill (stops at Submit) · cache layer</text>
+
+  <!-- lanes -->
+  <rect x="30" y="100" width="300" height="620" class="lane"/><text x="45" y="125" class="lanet">STUDENT'S BROWSER · vanilla JS</text>
+  <rect x="350" y="100" width="300" height="620" class="lane"/><text x="365" y="125" class="lanet">FASTAPI · backend/main.py</text>
+  <rect x="670" y="100" width="620" height="620" class="lane"/><text x="685" y="125" class="lanet">TINYFISH · backend/tinyfish_client.py (all API calls)</text>
+  <rect x="1310" y="100" width="260" height="620" class="lane"/><text x="1325" y="125" class="lanet">THE OPEN WEB</text>
+
+  <!-- browser -->
+  <rect x="55" y="150" width="250" height="80" class="box"/><text x="70" y="178" class="t">Profile form</text><text x="70" y="200" class="s">3 short sections · never stored</text>
+  <rect x="55" y="300" width="250" height="90" class="box"/><text x="70" y="328" class="t">Live step tracker</text><text x="70" y="350" class="s">searching → found → kept →</text><text x="70" y="368" class="s">extracting k/N → ranked · cards stream in</text>
+  <rect x="55" y="440" width="250" height="80" class="box"/><text x="70" y="468" class="t">Checklist + .ics</text><text x="70" y="490" class="s">documents de-duplicated · calendar</text>
+  <rect x="55" y="590" width="250" height="100" class="box"/><text x="70" y="618" class="t">Pre-fill panel</text><text x="70" y="640" class="s">live browser iframe + step log</text><text x="70" y="658" class="s">"Filled for you" / "You still need to do"</text>
+
+  <!-- api -->
+  <rect x="375" y="150" width="250" height="80" class="box"/><text x="390" y="178" class="t">/api/discover/stream</text><text x="390" y="200" class="s">Server-Sent Events</text>
+  <rect x="375" y="440" width="250" height="80" class="box"/><text x="390" y="468" class="t">/api/calendar</text><text x="390" y="490" class="s">open deadlines → .ics</text>
+  <rect x="375" y="590" width="250" height="100" class="box"/><text x="390" y="618" class="t">/api/prefill (SSE)</text><text x="390" y="640" class="s">+ /demo-form practice replica</text><text x="390" y="658" class="s">POST → 403 BLOCKED (proof)</text>
+
+  <!-- tinyfish -->
+  <rect x="695" y="150" width="270" height="110" class="free"/><text x="710" y="178" class="t">1 · Search  (free)</text><text x="710" y="200" class="s">client.search.query · location=IN</text><text x="710" y="218" class="s">gov set: include_domains gov.in, nic.in,</text><text x="710" y="236" class="s">state portal · open-web set: CSR, trusts</text>
+  <rect x="995" y="150" width="270" height="110" class="free"/><text x="1010" y="178" class="t">2 · Fetch  (free)</text><text x="1010" y="200" class="s">client.fetch.get_contents · batches of 10</text><text x="1010" y="218" class="s">keeps scholarship pages</text><text x="1010" y="236" class="s">thin / JS-only page → needs_agent</text>
+  <rect x="995" y="300" width="270" height="120" class="tf"/><text x="1010" y="328" class="t">3 · Agent  (credits)</text><text x="1010" y="350" class="s">client.agent.run + output_schema</text><text x="1010" y="368" class="s">parallel ×4 · stealth on .gov.in</text><text x="1010" y="386" class="s">TOP_K cap · snippet fallback</text><text x="1010" y="404" class="s">(no India proxy → failures expected)</text>
+  <rect x="695" y="300" width="270" height="120" class="free"/><text x="710" y="328" class="t">4 · Matcher  (free)</text><text x="710" y="350" class="s">backend/matcher.py · synonyms → rules</text><text x="710" y="368" class="s">score · verdict · reasons ✓</text><text x="710" y="386" class="s">blockers ✗ · cautions ⚠ · closed last</text>
+  <rect x="695" y="580" width="570" height="120" class="tf"/><text x="710" y="608" class="t">5 · Agent stream  (credits)</text><text x="710" y="630" class="s">client.agent.stream · browser_profile=stealth · AgentConfig(mode=strict, max_steps=60, max 300 s)</text><text x="710" y="648" class="s">STARTED → STREAMING_URL → PROGRESS… → COMPLETE → filled / needs_manual_input / stopped_before</text><text x="710" y="672" class="t" fill="#b42318">NEVER clicks Submit · no OTP / IDs / bank numbers / uploads</text>
+  <rect x="695" y="450" width="270" height="90" class="store"/><text x="710" y="478" class="t">Disk cache  .cache/</text><text x="710" y="500" class="s">sha-256 keys · 24 h TTL</text><text x="710" y="518" class="s">scholarship data only, never profiles</text>
+  <rect x="995" y="450" width="270" height="90" class="store"/><text x="1010" y="478" class="t">Mock + replay</text><text x="1010" y="500" class="s">mock_data.py labelled "Sample"</text><text x="1010" y="518" class="s">demo/replay_snapshot.json (DEMO_REPLAY=1)</text>
+
+  <!-- web -->
+  <rect x="1335" y="150" width="210" height="270" class="store"/><text x="1350" y="178" class="t">Portals</text><text x="1350" y="204" class="s">scholarships.gov.in (NSP)</text><text x="1350" y="224" class="s">myscheme.gov.in</text><text x="1350" y="244" class="s">Telangana ePASS</text><text x="1350" y="264" class="s">MahaDBT · PMS Bihar</text><text x="1350" y="284" class="s">CSR foundations</text><text x="1350" y="304" class="s">(Kotak, HDFC, Reliance…)</text><text x="1350" y="330" class="lbl">JS-heavy pages that plain</text><text x="1350" y="348" class="lbl">scrapers can't read →</text><text x="1350" y="366" class="lbl">routed to the Agent</text>
+  <rect x="1335" y="580" width="210" height="120" class="store"/><text x="1350" y="608" class="t">Application form</text><text x="1350" y="630" class="s">practice replica (public URL)</text><text x="1350" y="648" class="s">or public CSR form</text><text x="1350" y="672" class="lbl">login/OTP wall → agent stops</text>
+
+  <!-- arrows -->
+  <path d="M305,190 L375,190" class="arrow"/><text x="312" y="182" class="lbl">profile</text>
+  <path d="M625,190 L695,190" class="arrow"/>
+  <path d="M965,205 L995,205" class="arrow"/>
+  <path d="M1130,260 L1130,300" class="arrow"/>
+  <path d="M995,360 L965,360" class="arrow"/>
+  <path d="M695,360 C 560,360 500,330 305,330" class="arrow"/><text x="420" y="320" class="lbl">one event per finished Agent run</text>
+  <path d="M305,480 L375,480" class="arrow"/>
+  <path d="M1265,205 L1335,205" class="arrow"/><path d="M1265,230 L1335,230" class="arrow"/><path d="M1265,345 L1335,345" class="arrow"/>
+  <path d="M830,420 L830,450" class="arrow"/><path d="M1130,420 L1130,450" class="arrowd"/><text x="1140" y="440" class="lbl">fallback</text>
+  <path d="M305,640 L375,640" class="arrow"/><path d="M625,640 L695,640" class="arrow"/>
+  <path d="M1265,640 L1335,640" class="arrow"/><text x="1272" y="628" class="lbl">fills</text>
+  <path d="M700,700 C 500,740 400,740 180,700" class="arrowd"/><text x="420" y="735" class="lbl">STREAMING_URL · PROGRESS · COMPLETE back to the panel</text>
+</svg>

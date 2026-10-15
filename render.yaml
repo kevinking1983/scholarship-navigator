@@ -1,0 +1,23 @@
+# Render.com blueprint — free web service. TinyFish's cloud browser cannot reach localhost,
+# so the practice replica form (/demo-form) must be on a public URL for the pre-fill demo.
+services:
+  - type: web
+    name: scholarship-navigator
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: TINYFISH_API_KEY
+        sync: false            # paste in the Render dashboard; never commit it
+      - key: PUBLIC_BASE_URL
+        value: https://scholarship-navigator.onrender.com   # change to your service URL
+      - key: TOP_K
+        value: "6"
+      - key: MOCK
+        value: "0"
+      - key: DEMO_REPLAY
+        value: "0"

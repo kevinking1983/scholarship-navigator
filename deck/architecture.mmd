@@ -1,0 +1,39 @@
+%% Scholarship Navigator — architecture (matches backend/tinyfish_client.py)
+flowchart LR
+    subgraph Browser["Student's browser · frontend/index.html (vanilla JS)"]
+        UI[Profile form<br/>3 short sections]
+        TRACK[Live step tracker<br/>+ result cards as they arrive]
+        LIVE[Pre-fill panel<br/>live browser iframe + step log]
+    end
+
+    subgraph API["FastAPI · backend/main.py"]
+        DISC["/api/discover/stream (SSE)"]
+        PRE["/api/prefill (SSE)"]
+        CAL["/api/calendar (.ics)"]
+        FORM["/demo-form practice replica<br/>POST → BLOCKED"]
+    end
+
+    subgraph TF["TinyFish · backend/tinyfish_client.py (all API calls)"]
+        S["1 · Search (free)<br/>client.search.query<br/>gov set: include_domains gov.in/nic.in/state portal<br/>open-web set: CSR, trusts"]
+        F["2 · Fetch (free)<br/>client.fetch.get_contents<br/>batches of 10 · keeps scholarship pages<br/>flags JS-only pages → needs_agent"]
+        A["3 · Agent (credits)<br/>client.agent.run + output_schema<br/>parallel ×4 · stealth on .gov.in · TOP_K cap"]
+        P["5 · Agent stream (credits)<br/>client.agent.stream<br/>strict · max_steps 60 · 300 s<br/>NEVER clicks Submit"]
+    end
+
+    M["4 · Matcher (free, explainable)<br/>backend/matcher.py<br/>synonyms → rules → score, verdict,<br/>reasons ✓ blockers ✗ cautions ⚠"]
+    C[("Disk cache .cache/<br/>sha-256 keys · 24 h TTL<br/>scholarship data only")]
+    R[("demo/replay_snapshot.json<br/>DEMO_REPLAY=1")]
+    MOCK["mock_data.py<br/>labelled Sample schemes<br/>(no key / MOCK=1)"]
+    WEB[("NSP · myScheme · state portals<br/>ePASS / MahaDBT / PMS Bihar<br/>CSR foundations")]
+
+    UI -->|profile, never stored| DISC
+    DISC --> S --> F --> A --> M --> TRACK
+    S & F & A <--> C
+    S & F & A <--> WEB
+    DISC -.fallback.-> MOCK
+    DISC -.replay.-> R
+    TRACK --> CAL
+    LIVE --> PRE --> P
+    P -->|STREAMING_URL, PROGRESS, COMPLETE| LIVE
+    P -->|fills, stops before Submit| FORM
+    P -.->|login/OTP wall → stops early| WEB
