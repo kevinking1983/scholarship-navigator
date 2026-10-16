@@ -55,7 +55,7 @@
   after JS-only ones.
 - `demo/replay_snapshot.json` is now a genuine recorded run (Telangana sample student: 33 pages found, 6 extracted,
   3 likely-eligible government schemes incl. PMS-SC with real amounts). Screenshots re-captured from it.
-- Live timings for the three sample students are in `evidence/live_bench.json` and on deck slide 10.
+- Live timings for the three sample students are in `evidence/live_bench.json` and on deck slide 10 (avg 11 min per fresh profile, < 1 s cached; ≈ $0.79 per fresh profile at the wallet API's published rates). All three profiles returned at least one real, likely-eligible government scheme after the state-portal-first budget rule.
 - Extraction caveat seen live: the Pragati page's "special provisions for NE states / UTs" paragraph was read as a
   state restriction. The UI already says "verify on the official portal"; kept as an honest limitation.
 

@@ -1,0 +1,148 @@
+{
+ "bihar_obc_ba": {
+  "seconds": 904.8,
+  "agent_runs": 4,
+  "cache_hits": 2,
+  "candidates": 35,
+  "kept": 35,
+  "results": 6,
+  "errors": [],
+  "top": [
+   [
+    "Scholarship - Directorate of Collegiate Education",
+    "government",
+    "Possibly eligible",
+    "Not stated",
+    "snippet",
+    "Server disconnected without sending a response."
+   ],
+   [
+    "Post-Matric Scholarship for SC students",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "National Overseas Scholarship For Scheduled Caste Etc. Candi",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "PM-YASASVI: Top Class College Education for OBC, EBC and DNT",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "National Scholarship For Post Graduate Studies",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "Bihar Post Matric Scholarship (BC/EBC)",
+    "government",
+    "Likely eligible",
+    "Closed on 30 Sep 2026",
+    "agent",
+    ""
+   ]
+  ]
+ },
+ "maharashtra_general_mbbs": {
+  "seconds": 672.4,
+  "agent_runs": 6,
+  "cache_hits": 0,
+  "candidates": 46,
+  "kept": 46,
+  "results": 6,
+  "errors": [],
+  "top": [
+   [
+    "Rajarshi Chhatrapati Shahu Maharaj Fee Reimbursement Scheme",
+    "government",
+    "Likely eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "Post-Matric Tuition Fee and Examination Fee (Freeship)",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "Rajarshri Chhatrapati Shahu Maharaj Merit Scholarship",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "Government of India Post-Matric Scholarship",
+    "government",
+    "Not eligible",
+    "Not stated",
+    "agent",
+    ""
+   ],
+   [
+    "Post Matric Scholarship to OBC Students",
+    "government",
+    "Not eligible",
+    "Closed on 30 Jun 2025",
+    "agent",
+    ""
+   ],
+   [
+    "Tuition Fees and Examination Fees to OBC Students",
+    "government",
+    "Not eligible",
+    "Closed on 10 Oct 2026",
+    "agent",
+    ""
+   ]
+  ]
+ },
+ "_note": "Measured 2026-10-16 with TOP_K=6, EXTRACT_WORKERS=6, stealth profile; seconds = wall clock for one discovery.",
+ "telangana_sc_btech_from_replay": {
+  "seconds": 422.0,
+  "agent_runs": 4,
+  "cache_hits": 2,
+  "note": "see demo/replay_snapshot.json"
+ },
+ "_agent_run_stats": {
+  "runs_measured": 21,
+  "avg_steps": 8,
+  "avg_seconds": 118,
+  "median_seconds": 115,
+  "min_steps": 3,
+  "max_steps": 21
+ },
+ "_rates_from_wallet_api_2026_10_16": {
+  "agent_usd_per_step": 0.016,
+  "browser_usd_per_minute": 0.002,
+  "search_usd_per_query": 0,
+  "fetch_usd_per_url": 0
+ },
+ "_cost_estimate_per_fresh_profile_usd": {
+  "agent": 0.77,
+  "browser": 0.02,
+  "total": 0.79,
+  "basis": "TOP_K=6 runs x avg steps x $0.016 + 6 x avg minutes x $0.002; cached repeat = $0"
+ },
+ "_cached_repeat_discovery_seconds": 0.0
+}

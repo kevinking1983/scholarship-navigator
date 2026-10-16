@@ -103,13 +103,14 @@ Image: `deck/assets/05-prefill-live.png` + a screenshot of the evidence JSON.
 ## 10 · Scalability, Feasibility & Use Case
 **Cheap per student, because reading is cached and matching is free.**
 - Search and Fetch are free; only Agent extraction and pre-fill cost credits. Extraction is cached 24 h and capped (`TOP_K=6`); a nightly re-crawl of the top ~200 scheme pages serves every student from cache.
-- Measured in testing: average discovery time `[MEASURED] s`, Agent runs per fresh profile `[MEASURED]`, credits per run `[MEASURED]`, cache-hit discovery `[MEASURED] s`.
+- **Measured (2026-10-16, stealth profile, TOP_K=6, 6 parallel Agent runs):** discovery for a fresh profile took 422 s (Telangana), 905 s (Bihar), 672 s (Maharashtra) — average 11 min, of which Search + Fetch ≈ 80 s and the rest is Agent reading; a repeat/cached profile takes < 1 s with 0 Agent runs.
+- **Measured Agent cost:** 21 extraction runs averaged 8.0 steps and 2.0 min each. At the published rates (Agent $0.016/step, browser $0.002/min, Search & Fetch $0 — from the wallet API) that is ≈ **$0.79 per fresh student profile** and $0 for every cached repeat; a nightly re-crawl of ~200 scheme pages ≈ $26/night serves a whole college from cache.
 - Matching is instant and deterministic; adding a state = adding its portal domain and synonyms (minutes, no retraining).
 - Weekly deadline-watch job: re-extract deadlines, push `.ics`/notifications.
 - Risks → mitigations: portal layout changes (Agent reads semantically, not by selector); login walls (stop early, hand off); no India proxy (stealth profile, snippet fallback); venue Wi-Fi (replay mode); credit spikes (cap + cache).
 - Privacy: profiles never persisted; DPDP Act 2023-aligned by design.
 
-*Note: Replace every `[MEASURED]` with numbers from your 3 live runs. Do not estimate.*
+*Note: All numbers above are measured (see `evidence/live_bench.json`); say so on stage. Live runs also caught two real bugs (parallel fallback race, query-string de-dup) — good 'challenges' material.*
 Image: `deck/assets/02-progress.png`.
 
 ## 11 · Use Cases & Impact
@@ -126,7 +127,7 @@ Image: `deck/assets/04-checklist.png`.
 **Working today.**
 - Screenshots: `01-profile.png` · `02-progress.png` · `03-results.png` · `06-prefill-result.png` (+ `08-blocked.png` as proof of the guard)
 - Demo video: `[FILL IN unlisted link]` · Live URL: `[FILL IN]` · GitHub: `[FILL IN]`
-- Works now: streamed discovery with government/private tagging, explainable ranking, checklist, calendar export, agent pre-fill on a public practice form, sample/replay modes, 22 offline tests.
+- Works now: streamed discovery with government/private tagging, explainable ranking, checklist, calendar export, agent pre-fill on a public practice form, sample/replay modes, 26 offline tests; verified live for 3 student profiles — each returned at least one real, likely-eligible government scheme (Telangana PMS-SC, Bihar BC/EBC post-matric, Maharashtra Rajarshi Shahu fee reimbursement on MahaDBT).
 - Next: one verified public CSR form in the demo, nightly re-crawl cache, WhatsApp front-end.
 
 *Note: End on the BLOCKED page: "and it never submits."*
