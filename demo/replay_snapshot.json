@@ -1,148 +1,295 @@
 {
- "recorded_from": "mock",
- "recorded_at": 1792066475.236276,
+ "recorded_from": "live",
+ "recorded_at": 1792136272.8596458,
  "frames": [
   {
    "t": 0.0,
    "event": {
     "stage": "searching",
     "queries": [
-     "[sample] post matric scholarship Telangana SC",
-     "[sample] B.Tech scholarship Female 2026-27"
+     "post matric scholarship Telangana SC B.Tech CSE 2026-27",
+     "B.Tech CSE students scholarship scheme SC girls eligibility documents",
+     "B.Tech CSE scholarship girls year 2 2026-27 India apply online",
+     "CSR foundation trust scholarship engineering students income below 1 lakh 2026-27"
     ],
-    "message": "Searching 2 queries (sample data)"
+    "message": "Searching 4 queries"
    }
   },
   {
-   "t": 0.901,
+   "t": 0.001,
    "event": {
     "stage": "found",
-    "count": 23,
-    "message": "Found 23 pages (sample)"
+    "count": 33,
+    "errors": [],
+    "message": "Found 33 pages"
    }
   },
   {
-   "t": 1.801,
+   "t": 0.006,
    "event": {
     "stage": "kept",
-    "count": 12,
-    "message": "Kept 12 scholarship pages (sample)"
+    "count": 32,
+    "needs_agent": 13,
+    "message": "Kept 32 scholarship pages"
    }
   },
   {
-   "t": 2.702,
+   "t": 0.012,
    "event": {
     "stage": "extracting",
     "done": 1,
-    "total": 12,
-    "name": "Post-Matric Scholarship for SC students (Telangana ePASS)",
-    "cache_hit": false,
+    "total": 6,
+    "name": "Post-Matric Scholarship for SC students",
+    "cache_hit": true,
     "scheme": {
-     "name": "Post-Matric Scholarship for SC students (Telangana ePASS)",
-     "provider": "Government of Telangana \u00b7 SC Development Dept.",
+     "name": "Post-Matric Scholarship for SC students",
+     "provider": "Ministry of Social Justice and Empowerment, Government of India",
      "source_type": "government",
-     "amount": "Full tuition fee reimbursement + maintenance allowance",
-     "deadline": "22 Nov 2026",
+     "amount": "\u20b913,000/- hosteller / \u20b97,000/- day scholar (Group-1); \u20b99,500/- hosteller / \u20b96,500/- day scholar (Group-2); \u20b96,000/- hosteller / \u20b93,000/- day scholar (Group-3); \u20b94,000/- hosteller / \u20b92,500/- day scholar (Group-4). 10% extra allowance for Divyang students.",
+     "deadline": "Not stated",
      "eligibility": {
       "states": [
-       "Telangana"
+       "All India"
       ],
       "gender": "All",
       "categories": [
-       "Scheduled Caste"
+       "SC"
       ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
       "course_levels": [
-       "Post Matric"
+       "Post Matric",
+       "Diploma",
+       "UG",
+       "PG"
       ],
-      "income_limit": "\u20b92 lakh per annum",
-      "min_marks_current": "Pass in previous year",
-      "years_of_study": ""
+      "streams": [
+       "All"
+      ],
+      "years_of_study": "",
+      "income_limit": "\u20b9 2,50,000/- per annum",
+      "min_marks_10": "",
+      "min_marks_12": "",
+      "min_marks_current": "",
+      "institution_type": "any"
      },
      "documents_required": [
-      "Income certificate",
-      "Caste certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Bonafide certificate",
-      "Previous year marks memo",
-      "Ration card"
+      "Photograph",
+      "Academic Certificate",
+      "Caste Certificate",
+      "Income proof",
+      "Domicile Certificate",
+      "Bank Account Details",
+      "Aadhaar Card"
      ],
-     "application_url": "https://telanganaepass.cgg.gov.in/",
-     "source_url": "https://telanganaepass.cgg.gov.in/",
-     "notes": "Apply through the Telangana ePASS portal; college verifies the application.",
-     "sample": true,
+     "application_url": "https://scholarships.gov.in/",
+     "how_to_apply": "Apply online via the National Scholarship Portal (NSP). New applicants register at https://scholarships.gov.in/registrations/#/ and registered applicants use https://scholarships.gov.in/fresh/loginPage to fill the form, upload documents, and submit.",
+     "is_open": true,
+     "notes": "Scholarship holders cannot hold any other scholarship. Students pursuing C.A./I.C.W.A./C.S./I.C.F.A. are treated as day scholars. Students studying through correspondence/online courses are not eligible for academic allowance.",
+     "_run": {
+      "run_id": "794cb5c5-c69e-44f1-8a94-6eb97be73803",
+      "steps": 21,
+      "seconds": 156.588
+     },
+     "extraction": "agent",
+     "source_url": "https://www.myscheme.gov.in/schemes/pmsfss",
+     "needs_agent": true,
      "match": {
       "score": 100,
       "verdict": "Likely eligible",
       "reasons": [
-       "Open to students of Telangana",
        "Category SC is eligible",
-       "Family income \u20b91.8L is within the \u20b92L limit"
+       "Family income \u20b91.8L is within the \u20b92.5L limit"
       ],
       "blockers": [],
       "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
+       "Extracted by the agent \u2014 verify on the official portal before applying"
       ],
       "deadline": {
-       "date": "2026-11-22",
+       "date": null,
        "rolling": false,
        "closed": false,
-       "days_left": 38,
-       "label": "22 Nov 2026 \u00b7 closes in 38 days"
+       "days_left": null,
+       "label": "Not stated"
       }
      }
     },
-    "message": "Extracted 1/12: Post-Matric Scholarship for SC students (Telangana ePASS)"
+    "message": "Extracted 1/6: Post-Matric Scholarship for SC students"
    }
   },
   {
-   "t": 3.604,
+   "t": 0.016,
    "event": {
     "stage": "extracting",
     "done": 2,
-    "total": 12,
-    "name": "AICTE Pragati Scholarship for Girls",
-    "cache_hit": false,
+    "total": 6,
+    "name": "Pragati Scholarship Scheme For Girl Students (Technical Diploma)",
+    "cache_hit": true,
     "scheme": {
-     "name": "AICTE Pragati Scholarship for Girls",
-     "provider": "AICTE / Ministry of Education (via National Scholarship Portal)",
+     "name": "Pragati Scholarship Scheme For Girl Students (Technical Diploma)",
+     "provider": "Ministry of Education",
      "source_type": "government",
-     "amount": "\u20b950,000 per year",
-     "deadline": "08 Nov 2026",
+     "amount": "Rs. 50,000/- per annum (maximum 3 years for first-year admitted students and maximum 2 years for second-year admitted students through lateral entry)",
+     "deadline": "Not stated",
      "eligibility": {
-      "states": "All India",
-      "gender": "Girls",
-      "categories": "All",
+      "states": [
+       "Andaman and Nicobar Islands",
+       "Jammu and Kashmir",
+       "Ladakh",
+       "Dadra and Nagar Haveli & Daman and Diu",
+       "Lakshadweep",
+       "Arunachal Pradesh",
+       "Assam",
+       "Manipur",
+       "Meghalaya",
+       "Mizoram",
+       "Nagaland",
+       "Sikkim",
+       "Tripura"
+      ],
+      "gender": "Female",
+      "categories": [
+       "All"
+      ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
       "course_levels": [
-       "Diploma",
-       "UG"
+       "Diploma"
       ],
       "streams": [
-       "Engineering / Technical"
+       "All"
       ],
-      "income_limit": "\u20b98 lakh per annum",
-      "years_of_study": "1, 2"
+      "years_of_study": "1st or 2nd year (lateral entry)",
+      "income_limit": "Rs. 8,00,000 per annum",
+      "min_marks_10": "",
+      "min_marks_12": "",
+      "min_marks_current": "",
+      "institution_type": "any"
      },
      "documents_required": [
-      "Aadhaar card",
-      "Income certificate",
-      "Class 10 marksheet",
-      "Class 12 marksheet",
-      "Admission letter",
-      "Tuition fee receipt",
-      "Bank passbook",
-      "Category certificate (if applicable)",
-      "Parent's declaration"
+      "SSC/10th certificate",
+      "HSC/12th certificate (in case of degree level)",
+      "ITI certificate (in case of lateral entry for diploma level)",
+      "Diploma certificate (in case of lateral entry for degree level)",
+      "Bank Passbook",
+      "Category Certificate",
+      "Aadhaar Card",
+      "Passport-size photo",
+      "Study Certificate (Appendix-I)",
+      "Annual Family Income Certificate (Appendix II)",
+      "Parent's Declaration (Appendix-III)",
+      "Bank Mandate Form (Appendix-IV)"
      ],
      "application_url": "https://scholarships.gov.in/",
-     "source_url": "https://www.aicte-india.org/schemes/students-development-schemes/Pragati",
-     "notes": "Up to two girl children per family; AICTE-approved institutions only.",
-     "sample": true,
+     "how_to_apply": "Apply online via the National Scholarships Portal (NSP). New registrants must register first, then log in with Application ID and password, fill the application form, upload documents, and submit.",
+     "is_open": true,
+     "notes": "Maximum two girls per family can avail this scheme. Applicants who failed/dropped out, receive other financial assistance, or have a gap of more than two years since qualifying exams are ineligible. Payment is through DBT.",
+     "_run": {
+      "run_id": "fe6ae289-b684-4d79-8088-f77ff3928f05",
+      "steps": 4,
+      "seconds": 52.193
+     },
+     "extraction": "agent",
+     "source_url": "https://www.myscheme.gov.in/schemes/psgs-dip",
+     "needs_agent": true,
+     "match": {
+      "score": 25,
+      "verdict": "Not eligible",
+      "reasons": [
+       "For female students \u2014 matches you",
+       "Family income \u20b91.8L is within the \u20b98L limit",
+       "Year 2 students can apply"
+      ],
+      "blockers": [
+       "Only for Jammu and Kashmir, Ladakh, Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim, Tripura students (you entered Telangana)",
+       "Only for Diploma courses (you are UG)"
+      ],
+      "cautions": [
+       "Extracted by the agent \u2014 verify on the official portal before applying"
+      ],
+      "deadline": {
+       "date": null,
+       "rolling": false,
+       "closed": false,
+       "days_left": null,
+       "label": "Not stated"
+      }
+     }
+    },
+    "message": "Extracted 2/6: Pragati Scholarship Scheme For Girl Students (Technical Diploma)"
+   }
+  },
+  {
+   "t": 156.622,
+   "event": {
+    "stage": "extracting",
+    "done": 3,
+    "total": 6,
+    "name": "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+    "cache_hit": false,
+    "scheme": {
+     "name": "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+     "provider": "All India Council for Technical Education (AICTE), Ministry of Education, Government of India",
+     "source_type": "government",
+     "amount": "\u20b950,000 per annum (up to 4 years for Degree first-year entrants, up to 3 years for Diploma first-year entrants)",
+     "deadline": "Not stated (applications invited once a year via National Scholarship Portal; notice published on AICTE/NSP when window opens)",
+     "eligibility": {
+      "states": [
+       "All India (verified via respective State/UT authorities)"
+      ],
+      "gender": "All",
+      "categories": [
+       "SC",
+       "ST",
+       "OBC-NCL",
+       "General"
+      ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
+      "course_levels": [
+       "Degree",
+       "Diploma"
+      ],
+      "streams": [
+       "All AICTE-approved courses"
+      ],
+      "years_of_study": "1st/2nd/3rd/4th year (Degree), 1st/2nd/3rd year (Diploma) - as applicable",
+      "income_limit": "\u20b98,00,000 per annum",
+      "min_marks_10": "Not specified",
+      "min_marks_12": "Not specified (merit-based)",
+      "min_marks_current": "Not specified",
+      "institution_type": "Any AICTE-approved institution"
+     },
+     "documents_required": [
+      "Aadhaar card (mandatory, Aadhaar-seeded bank account)",
+      "Bonafide Certificate from institution",
+      "Category Certificate (SC/ST/OBC-NCL)",
+      "Income Certificate (from State/UT authority, family income < \u20b98 lakh)",
+      "10th Mark Sheet (for Diploma level)",
+      "10+2/Equivalent Mark Sheet (for Degree level)",
+      "Death Certificate of parents (for orphan candidates) OR Death Certificate explicitly mentioning Covid-19 (for parents died due to Covid) OR Shaheed Certificate (for martyred forces wards)",
+      "Current year Income Certificate with family income < \u20b98 lakh (for Covid-martyred parents and forces wards categories)"
+     ],
+     "application_url": "https://scholarships.gov.in/fresh/newstdRegfrmInstruction",
+     "how_to_apply": "Register on the National Scholarship Portal (scholarships.gov.in), fill the application form, upload required documents, and submit online.",
+     "is_open": true,
+     "notes": "Maximum 2000 scholarships per year (1000 for Degree, 1000 for Diploma). Candidates already receiving any Central/State/AICTE scholarship are ineligible. Selection is merit-based from qualifying exam. Scholarship disbursed via DBT. CGPA can be converted to percentage using CGPA \u00d7 9.5.",
+     "_run": {
+      "run_id": "9f15a8a6-ed9c-468b-885f-9cbdf647556c",
+      "steps": 12,
+      "seconds": 151.245
+     },
+     "extraction": "agent",
+     "source_url": "https://fellowship.aicte.gov.in/",
+     "needs_agent": true,
      "match": {
       "score": 100,
       "verdict": "Likely eligible",
       "reasons": [
-       "For female students \u2014 matches you",
+       "Category SC is eligible",
        "Covers UG courses",
        "Covers engineering courses",
        "Family income \u20b91.8L is within the \u20b98L limit",
@@ -150,655 +297,293 @@
       ],
       "blockers": [],
       "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
+       "Extracted by the agent \u2014 verify on the official portal before applying"
       ],
       "deadline": {
-       "date": "2026-11-08",
+       "date": null,
        "rolling": false,
        "closed": false,
-       "days_left": 24,
-       "label": "08 Nov 2026 \u00b7 closes in 24 days"
+       "days_left": null,
+       "label": "Not stated"
       }
      }
     },
-    "message": "Extracted 2/12: AICTE Pragati Scholarship for Girls"
+    "message": "Extracted 3/6: AICTE \u2013 SWANATH Scholarship Scheme For Students"
    }
   },
   {
-   "t": 4.505,
-   "event": {
-    "stage": "extracting",
-    "done": 3,
-    "total": 12,
-    "name": "Kotak Kanya Scholarship",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Kotak Kanya Scholarship",
-     "provider": "Kotak Education Foundation (CSR)",
-     "source_type": "private",
-     "amount": "\u20b91.5 lakh per year for the full course",
-     "deadline": "24 Oct 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "Female",
-      "categories": "All",
-      "course_levels": [
-       "UG"
-      ],
-      "streams": [
-       "Engineering",
-       "Medicine",
-       "Law",
-       "Management",
-       "Architecture"
-      ],
-      "income_limit": "\u20b93.2 lakh per annum",
-      "min_marks_12": "85%",
-      "years_of_study": "1"
-     },
-     "documents_required": [
-      "Class 12 marksheet",
-      "Income proof",
-      "Aadhaar card",
-      "Admission proof",
-      "Fee receipt",
-      "Bank account details",
-      "Passport-size photograph"
-     ],
-     "application_url": "https://kotakeducation.org/kotak-kanya-scholarship/",
-     "source_url": "https://kotakeducation.org/kotak-kanya-scholarship/",
-     "notes": "Merit-cum-means; for girls entering professional courses at premier institutes.",
-     "sample": true,
-     "match": {
-      "score": 25,
-      "verdict": "Not eligible",
-      "reasons": [
-       "For female students \u2014 matches you",
-       "Covers UG courses",
-       "Covers engineering courses",
-       "Family income \u20b91.8L is within the \u20b93.2L limit",
-       "Class 12 marks 88% meet the 85% minimum"
-      ],
-      "blockers": [
-       "Only for students in year [1] (you are in year 2)"
-      ],
-      "cautions": [
-       "Closing soon \u2014 only 9 days left",
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-10-24",
-       "rolling": false,
-       "closed": false,
-       "days_left": 9,
-       "label": "24 Oct 2026 \u00b7 closes in 9 days"
-      }
-     }
-    },
-    "message": "Extracted 3/12: Kotak Kanya Scholarship"
-   }
-  },
-  {
-   "t": 5.406,
+   "t": 235.887,
    "event": {
     "stage": "extracting",
     "done": 4,
-    "total": 12,
-    "name": "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
+    "total": 6,
+    "name": "PM-YASASVI: Post-Matric Scholarship for OBC, EBC and DNT Students",
     "cache_hit": false,
     "scheme": {
-     "name": "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-     "provider": "Dept. of Higher Education, Ministry of Education (NSP)",
+     "name": "PM-YASASVI: Post-Matric Scholarship for OBC, EBC and DNT Students",
+     "provider": "Ministry of Social Justice & Empowerment, Government of India",
      "source_type": "government",
-     "amount": "\u20b912,000 per year (UG) \u00b7 \u20b920,000 per year (PG)",
-     "deadline": "15 Nov 2026",
+     "amount": "\u20b920,000/year (Group 1 - Degree/PG Professional: \u20b910,000 academic allowance + \u20b910,000 tuition fee); \u20b913,000/year (Group 2 - Other Professional: \u20b98,000 + \u20b95,000); \u20b98,000/year (Group 3 - Graduate/PG: \u20b96,000 + \u20b92,000); \u20b95,000/year (Group 4 - Post-matric non-degree: \u20b95,000 + \u20b90)",
+     "deadline": "30th June",
      "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "course_levels": [
-       "UG",
-       "PG"
+      "states": [
+       "All India (applies to all States/UTs; scholarship awarded by the State to which the applicant belongs - permanently settled)",
+       "Studies in India only"
       ],
-      "income_limit": "\u20b94.5 lakh per annum",
-      "min_marks_12": "80%"
-     },
-     "documents_required": [
-      "Class 12 marksheet",
-      "Income certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Bonafide certificate",
-      "Passport-size photograph"
-     ],
-     "application_url": "https://scholarships.gov.in/",
-     "source_url": "https://scholarships.gov.in/",
-     "notes": "Top 20 percentile of the Class 12 board; regular courses only.",
-     "sample": true,
-     "match": {
-      "score": 100,
-      "verdict": "Likely eligible",
-      "reasons": [
-       "Covers UG courses",
-       "Family income \u20b91.8L is within the \u20b94.5L limit",
-       "Class 12 marks 88% meet the 80% minimum"
-      ],
-      "blockers": [],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-11-15",
-       "rolling": false,
-       "closed": false,
-       "days_left": 31,
-       "label": "15 Nov 2026 \u00b7 closes in 31 days"
-      }
-     }
-    },
-    "message": "Extracted 4/12: Central Sector Scheme of Scholarship for College & University Students (CSSS)"
-   }
-  },
-  {
-   "t": 6.308,
-   "event": {
-    "stage": "extracting",
-    "done": 5,
-    "total": 12,
-    "name": "PM YASASVI Post-Matric Scholarship (OBC / EBC / DNT)",
-    "cache_hit": false,
-    "scheme": {
-     "name": "PM YASASVI Post-Matric Scholarship (OBC / EBC / DNT)",
-     "provider": "Ministry of Social Justice & Empowerment (NSP)",
-     "source_type": "government",
-     "amount": "Academic allowance \u20b95,000\u2013\u20b920,000 per year + fee support",
-     "deadline": "28 Nov 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
+      "gender": "All (restriction: only two boys per family eligible; no restriction for girls)",
       "categories": [
        "OBC",
        "EBC",
        "DNT"
       ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
       "course_levels": [
-       "Post Matric"
+       "Post-Matric",
+       "Class 11-12",
+       "Diploma",
+       "UG",
+       "PG",
+       "PhD",
+       "Professional"
       ],
-      "income_limit": "\u20b92.5 lakh per annum"
+      "streams": [
+       "Engineering",
+       "Medicine",
+       "Arts",
+       "Commerce",
+       "Science",
+       "Law",
+       "Management",
+       "Veterinary",
+       "Agriculture",
+       "Hotel Management",
+       "Mass Communication",
+       "Nursing",
+       "Pharmacy",
+       "All"
+      ],
+      "years_of_study": "Up to the completion of the course",
+      "income_limit": "\u20b92.50 lakhs per annum (annual family income of parents/guardians)",
+      "min_marks_10": "Passed Matriculation (recognized Board/University)",
+      "min_marks_12": "Passed Higher Secondary (recognized Board/University)",
+      "min_marks_current": "Not specified",
+      "institution_type": "any (recognized institutions/universities/colleges)"
      },
      "documents_required": [
-      "Caste certificate",
-      "Income certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Previous year marksheet",
-      "Bonafide certificate",
-      "Domicile certificate"
+      "Aadhaar Card",
+      "Passport-size photograph",
+      "Educational qualification marksheets/certificates",
+      "Valid Income certificate issued by the competent Authority",
+      "Domicile Certificate",
+      "Caste/Community Certificate issued by the competent authority",
+      "Disability certificate (if applicable)",
+      "Bank Account details",
+      "Any other documents as required"
      ],
      "application_url": "https://scholarships.gov.in/",
-     "source_url": "https://socialjustice.gov.in/",
-     "notes": "Applications are verified by the institute and then the state nodal officer.",
-     "sample": true,
+     "how_to_apply": "Register/login on the National Scholarship Portal (NSP) or respective State/UT scholarship portal, fill the application form, upload required documents, and submit before 30th June each year.",
+     "is_open": true,
+     "notes": "Centrally Sponsored Scheme under Samagra Shiksha. Restriction: Only two boys per family can receive the scholarship; no limit on girls. Freeship Card provided for tuition/hostel fee reimbursement. Application portal opens 1st April and closes 30th June. Students belonging to one State but studying in another receive scholarship from their home State. Correspondence/online students eligible for tuition fees but not academic allowance. Course renewal available for illness or failure in Group I exams. Cannot avail simultaneously with other similar scholarships.",
+     "_run": {
+      "run_id": "f49a5824-736d-4d5b-bad2-75c8c24ef521",
+      "steps": 12,
+      "seconds": 168.739
+     },
+     "extraction": "agent",
+     "source_url": "https://www.myscheme.gov.in/schemes/pm-yasasvipmsobcebcdnts",
+     "needs_agent": true,
      "match": {
       "score": 25,
       "verdict": "Not eligible",
       "reasons": [
+       "For female students \u2014 matches you",
        "Family income \u20b91.8L is within the \u20b92.5L limit"
       ],
       "blockers": [
        "Only for OBC category (you are SC)"
       ],
       "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
+       "Deadline has passed \u2014 watch for the next cycle",
+       "Extracted by the agent \u2014 verify on the official portal before applying"
       ],
       "deadline": {
-       "date": "2026-11-28",
+       "date": "2026-06-30",
        "rolling": false,
-       "closed": false,
-       "days_left": 44,
-       "label": "28 Nov 2026 \u00b7 closes in 44 days"
+       "closed": true,
+       "days_left": -108,
+       "label": "Closed on 30 Jun 2026"
       }
      }
     },
-    "message": "Extracted 5/12: PM YASASVI Post-Matric Scholarship (OBC / EBC / DNT)"
+    "message": "Extracted 4/6: PM-YASASVI: Post-Matric Scholarship for OBC, EBC and DNT Students"
    }
   },
   {
-   "t": 7.209,
+   "t": 266.538,
    "event": {
     "stage": "extracting",
-    "done": 6,
-    "total": 12,
-    "name": "Bihar Post-Matric Scholarship for BC / EBC students",
+    "done": 5,
+    "total": 6,
+    "name": "Merit Scholarship to SC/ST/OBC/Minority students studying in recognised Colleges/Professional/Technical Institutions",
     "cache_hit": false,
     "scheme": {
-     "name": "Bihar Post-Matric Scholarship for BC / EBC students",
-     "provider": "Government of Bihar \u00b7 BC & EBC Welfare Dept. (PMS Online)",
+     "name": "Merit Scholarship to SC/ST/OBC/Minority students studying in recognised Colleges/Professional/Technical Institutions",
+     "provider": "Department for the Welfare of SC/ST/OBC, Government of NCT of Delhi",
      "source_type": "government",
-     "amount": "Course fee reimbursement up to \u20b915,000 per year (varies by course)",
-     "deadline": "04 Dec 2026",
+     "amount": "Monthly scholarships ranging from \u20b9420/- to \u20b91,860/- per month for 12 months, depending on the course group (Group A, B, C, D) and status (Hosteller/Day Scholar)",
+     "deadline": "Not stated",
      "eligibility": {
       "states": [
-       "Bihar"
+       "Delhi"
       ],
       "gender": "All",
       "categories": [
-       "Other Backward Classes",
-       "EBC"
-      ],
-      "course_levels": [
-       "Post Matric"
-      ],
-      "income_limit": "\u20b93 lakh per annum"
-     },
-     "documents_required": [
-      "Caste certificate",
-      "Income certificate",
-      "Residence certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Previous year marksheet",
-      "Fee receipt",
-      "Bonafide certificate"
-     ],
-     "application_url": "https://pmsonline.bih.nic.in/",
-     "source_url": "https://pmsonline.bih.nic.in/",
-     "notes": "Students studying inside or outside Bihar can apply if domiciled in Bihar.",
-     "sample": true,
-     "match": {
-      "score": 25,
-      "verdict": "Not eligible",
-      "reasons": [
-       "Family income \u20b91.8L is within the \u20b93L limit"
-      ],
-      "blockers": [
-       "Only for Bihar students (you entered Telangana)",
-       "Only for OBC category (you are SC)"
-      ],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-12-04",
-       "rolling": false,
-       "closed": false,
-       "days_left": 50,
-       "label": "04 Dec 2026 \u00b7 closes in 50 days"
-      }
-     }
-    },
-    "message": "Extracted 6/12: Bihar Post-Matric Scholarship for BC / EBC students"
-   }
-  },
-  {
-   "t": 8.111,
-   "event": {
-    "stage": "extracting",
-    "done": 7,
-    "total": 12,
-    "name": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti (MahaDBT)",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti (MahaDBT)",
-     "provider": "Government of Maharashtra \u00b7 Higher & Technical Education",
-     "source_type": "government",
-     "amount": "50% of tuition and exam fees reimbursed",
-     "deadline": "14 Dec 2026",
-     "eligibility": {
-      "states": [
-       "Maharashtra"
-      ],
-      "gender": "All",
-      "categories": [
-       "General",
+       "SC",
+       "ST",
        "OBC",
-       "EWS"
+       "Minority"
       ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
       "course_levels": [
+       "Diploma",
        "UG",
        "PG"
       ],
       "streams": [
-       "Professional courses"
+       "All"
       ],
-      "income_limit": "\u20b98 lakh per annum"
+      "years_of_study": "Not stated",
+      "income_limit": "\u20b92,00,000/- per annum for OBC and Minority students",
+      "min_marks_10": "Not stated",
+      "min_marks_12": "Not stated",
+      "min_marks_current": "Minimum 60% marks in previous examination",
+      "institution_type": "any"
      },
      "documents_required": [
-      "Domicile certificate",
-      "Income certificate",
-      "Aadhaar card",
-      "Class 12 marksheet",
-      "Admission / CAP allotment letter",
-      "Fee receipt",
-      "Bank passbook"
+      "Income Certificate issued by competent authorities of GNCTD (for OBC and Minority students)",
+      "Affidavit (for education gap up to 3 years)",
+      "Caste Certificate (for SC/ST/OBC)",
+      "Domicile Certificate (if caste certificate not issued by GNCTD)",
+      "Proof of residency in Delhi (for Minority)",
+      "Declaration of minority status"
      ],
-     "application_url": "https://mahadbt.maharashtra.gov.in/",
-     "source_url": "https://mahadbt.maharashtra.gov.in/",
-     "notes": "Apply on MahaDBT; the college forwards the application.",
-     "sample": true,
+     "application_url": "https://edistrict.delhigovt.nic.in/",
+     "how_to_apply": "Online via the e-District Portal of the Govt. of NCT of Delhi by registering/logging in, selecting 'Apply Service', and submitting the application form with required documents.",
+     "is_open": true,
+     "notes": "Scholarship reduced to 50% if a student fails the annual examination unless due to medical grounds or natural calamities. Scholarship paid for 12 months.",
+     "_run": {
+      "run_id": "07bc5a00-404e-4a30-bfb2-d908d6e332e7",
+      "steps": 7,
+      "seconds": 76.445
+     },
+     "extraction": "agent",
+     "source_url": "https://www.myscheme.gov.in/schemes/smssssictpi",
+     "needs_agent": true,
      "match": {
       "score": 25,
       "verdict": "Not eligible",
       "reasons": [
+       "Category SC is eligible",
        "Covers UG courses",
-       "Family income \u20b91.8L is within the \u20b98L limit"
-      ],
-      "blockers": [
-       "Only for Maharashtra students (you entered Telangana)",
-       "Only for General/OBC/EWS category (you are SC)"
-      ],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-12-14",
-       "rolling": false,
-       "closed": false,
-       "days_left": 60,
-       "label": "14 Dec 2026 \u00b7 closes in 60 days"
-      }
-     }
-    },
-    "message": "Extracted 7/12: Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti (MahaDBT)"
-   }
-  },
-  {
-   "t": 9.013,
-   "event": {
-    "stage": "extracting",
-    "done": 8,
-    "total": 12,
-    "name": "Post-Matric Scholarship for Minority Communities",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Post-Matric Scholarship for Minority Communities",
-     "provider": "Ministry of Minority Affairs (NSP)",
-     "source_type": "government",
-     "amount": "Admission + tuition fee up to \u20b910,000 per year + maintenance allowance",
-     "deadline": "13 Nov 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "minority_only": true,
-      "course_levels": [
-       "Post Matric"
-      ],
-      "income_limit": "\u20b92 lakh per annum",
-      "min_marks_current": "50%"
-     },
-     "documents_required": [
-      "Self-declaration of community",
-      "Income certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Previous year marksheet",
-      "Bonafide certificate"
-     ],
-     "application_url": "https://scholarships.gov.in/",
-     "source_url": "https://scholarships.gov.in/",
-     "notes": "30% of scholarships are earmarked for girl students.",
-     "sample": true,
-     "match": {
-      "score": 25,
-      "verdict": "Not eligible",
-      "reasons": [
        "Family income \u20b91.8L is within the \u20b92L limit",
-       "last exam marks 81% meet the 50% minimum"
-      ],
-      "blockers": [
-       "Only for notified minority communities"
-      ],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-11-13",
-       "rolling": false,
-       "closed": false,
-       "days_left": 29,
-       "label": "13 Nov 2026 \u00b7 closes in 29 days"
-      }
-     }
-    },
-    "message": "Extracted 8/12: Post-Matric Scholarship for Minority Communities"
-   }
-  },
-  {
-   "t": 9.914,
-   "event": {
-    "stage": "extracting",
-    "done": 9,
-    "total": 12,
-    "name": "HDFC Bank Parivartan's ECSS Programme",
-    "cache_hit": false,
-    "scheme": {
-     "name": "HDFC Bank Parivartan's ECSS Programme",
-     "provider": "HDFC Bank (CSR)",
-     "source_type": "private",
-     "amount": "Up to \u20b975,000 (UG) \u00b7 up to \u20b91 lakh (professional)",
-     "deadline": "03 Nov 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "course_levels": [
-       "Diploma",
-       "UG",
-       "PG"
-      ],
-      "income_limit": "\u20b92.5 lakh per annum",
-      "min_marks_current": "55%"
-     },
-     "documents_required": [
-      "Previous year marksheet",
-      "Income proof",
-      "Aadhaar card",
-      "Bank passbook",
-      "Fee receipt",
-      "Passport-size photograph",
-      "Admission proof"
-     ],
-     "application_url": "https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility",
-     "source_url": "https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility",
-     "notes": "Need-based; students facing a family crisis get priority.",
-     "sample": true,
-     "match": {
-      "score": 100,
-      "verdict": "Likely eligible",
-      "reasons": [
-       "Covers UG courses",
-       "Family income \u20b91.8L is within the \u20b92.5L limit",
-       "last exam marks 81% meet the 55% minimum"
-      ],
-      "blockers": [],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-11-03",
-       "rolling": false,
-       "closed": false,
-       "days_left": 19,
-       "label": "03 Nov 2026 \u00b7 closes in 19 days"
-      }
-     }
-    },
-    "message": "Extracted 9/12: HDFC Bank Parivartan's ECSS Programme"
-   }
-  },
-  {
-   "t": 10.816,
-   "event": {
-    "stage": "extracting",
-    "done": 10,
-    "total": 12,
-    "name": "Post-Matric Scholarship for Students with Disabilities",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Post-Matric Scholarship for Students with Disabilities",
-     "provider": "Dept. of Empowerment of Persons with Disabilities (NSP)",
-     "source_type": "government",
-     "amount": "Maintenance allowance + course fee up to \u20b91.5 lakh per year",
-     "deadline": "19 Nov 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "pwd_only": true,
-      "course_levels": [
-       "Post Matric"
-      ],
-      "income_limit": "\u20b92.5 lakh per annum"
-     },
-     "documents_required": [
-      "Disability certificate (40%+)",
-      "Income certificate",
-      "Aadhaar card",
-      "Bank passbook",
-      "Previous year marksheet",
-      "Bonafide certificate"
-     ],
-     "application_url": "https://scholarships.gov.in/",
-     "source_url": "https://disabilityaffairs.gov.in/",
-     "notes": "Benchmark disability of 40% or more.",
-     "sample": true,
-     "match": {
-      "score": 25,
-      "verdict": "Not eligible",
-      "reasons": [
-       "Family income \u20b91.8L is within the \u20b92.5L limit"
-      ],
-      "blockers": [
-       "Only for students with a disability (40%+)"
-      ],
-      "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-11-19",
-       "rolling": false,
-       "closed": false,
-       "days_left": 35,
-       "label": "19 Nov 2026 \u00b7 closes in 35 days"
-      }
-     }
-    },
-    "message": "Extracted 10/12: Post-Matric Scholarship for Students with Disabilities"
-   }
-  },
-  {
-   "t": 11.718,
-   "event": {
-    "stage": "extracting",
-    "done": 11,
-    "total": 12,
-    "name": "Reliance Foundation Undergraduate Scholarship",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Reliance Foundation Undergraduate Scholarship",
-     "provider": "Reliance Foundation (CSR)",
-     "source_type": "private",
-     "amount": "Up to \u20b92 lakh over the course",
-     "deadline": "09 Oct 2026",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "course_levels": [
-       "UG"
-      ],
-      "income_limit": "\u20b915 lakh per annum",
-      "min_marks_12": "60%",
-      "years_of_study": "1"
-     },
-     "documents_required": [
-      "Class 12 marksheet",
-      "Income proof",
-      "Aadhaar card",
-      "Admission proof",
-      "Passport-size photograph"
-     ],
-     "application_url": "https://scholarships.reliancefoundation.org/",
-     "source_url": "https://scholarships.reliancefoundation.org/",
-     "notes": "Merit-cum-means; includes an aptitude test.",
-     "sample": true,
-     "match": {
-      "score": 25,
-      "verdict": "Not eligible",
-      "reasons": [
-       "Covers UG courses",
-       "Family income \u20b91.8L is within the \u20b915L limit",
-       "Class 12 marks 88% meet the 60% minimum"
-      ],
-      "blockers": [
-       "Only for students in year [1] (you are in year 2)"
-      ],
-      "cautions": [
-       "Deadline has passed \u2014 watch for the next cycle",
-       "Sample data \u2014 verify every detail on the official portal"
-      ],
-      "deadline": {
-       "date": "2026-10-09",
-       "rolling": false,
-       "closed": true,
-       "days_left": -6,
-       "label": "Closed on 09 Oct 2026"
-      }
-     }
-    },
-    "message": "Extracted 11/12: Reliance Foundation Undergraduate Scholarship"
-   }
-  },
-  {
-   "t": 12.621,
-   "event": {
-    "stage": "extracting",
-    "done": 12,
-    "total": 12,
-    "name": "Sitaram Jindal Foundation Scholarship",
-    "cache_hit": false,
-    "scheme": {
-     "name": "Sitaram Jindal Foundation Scholarship",
-     "provider": "Sitaram Jindal Foundation (trust)",
-     "source_type": "private",
-     "amount": "\u20b9500\u2013\u20b93,200 per month depending on course",
-     "deadline": "Rolling \u2014 applications accepted throughout the year",
-     "eligibility": {
-      "states": "All India",
-      "gender": "All",
-      "categories": "All",
-      "course_levels": [
-       "School",
-       "Diploma",
-       "UG",
-       "PG"
-      ],
-      "income_limit": "\u20b94 lakh per annum",
-      "min_marks_current": "60%"
-     },
-     "documents_required": [
-      "Previous year marksheet",
-      "Income certificate",
-      "Bonafide certificate",
-      "Bank passbook",
-      "Passport-size photograph"
-     ],
-     "application_url": "https://www.sitaramjindalfoundation.org/scholarships-for-students-in-bangalore.php",
-     "source_url": "https://www.sitaramjindalfoundation.org/",
-     "notes": "Applications by post; separate marks criteria for boys and girls.",
-     "sample": true,
-     "match": {
-      "score": 100,
-      "verdict": "Likely eligible",
-      "reasons": [
-       "Covers UG courses",
-       "Family income \u20b91.8L is within the \u20b94L limit",
        "last exam marks 81% meet the 60% minimum"
       ],
+      "blockers": [
+       "Only for Delhi students (you entered Telangana)"
+      ],
+      "cautions": [
+       "Extracted by the agent \u2014 verify on the official portal before applying"
+      ],
+      "deadline": {
+       "date": null,
+       "rolling": false,
+       "closed": false,
+       "days_left": null,
+       "label": "Not stated"
+      }
+     }
+    },
+    "message": "Extracted 5/6: Merit Scholarship to SC/ST/OBC/Minority students studying in recognised Colleges/Professional/Technical Institutions"
+   }
+  },
+  {
+   "t": 421.997,
+   "event": {
+    "stage": "extracting",
+    "done": 6,
+    "total": 6,
+    "name": "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)",
+    "cache_hit": false,
+    "scheme": {
+     "name": "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)",
+     "provider": "Ministry of Social Justice & Empowerment, Government of India",
+     "source_type": "government",
+     "amount": "Compulsory non-refundable fees (tuition etc.) as fixed by State Fee Fixation/Rationalization Committee + Academic allowance (yearly): Group 1 (professional degree/PG): Hostellers Rs.13,500 / Day Scholars Rs.7,000; Group 2 (other professional courses): Hostellers Rs.9,500 / Day Scholars Rs.6,500; Group 3 (general graduate/PG): Hostellers Rs.6,000 / Day Scholars Rs.3,000; Group 4 (post-matric non-degree): Hostellers Rs.4,000 / Day Scholars Rs.2,500; 10% extra for Divyang (PWD)",
+     "deadline": "Rolling (portals open throughout the year; State/UTs may prescribe specific deadlines)",
+     "eligibility": {
+      "states": [
+       "State/UT of domicile only (SC category as specified for that State/UT)"
+      ],
+      "gender": "All",
+      "categories": [
+       "SC"
+      ],
+      "minority_only": false,
+      "pwd_only": false,
+      "single_girl_child_only": false,
+      "course_levels": [
+       "Class 11-12",
+       "Diploma",
+       "UG",
+       "PG",
+       "PhD",
+       "Professional Courses"
+      ],
+      "streams": [
+       "All"
+      ],
+      "years_of_study": "Up to completion of the course subject to satisfactory academic performance and 75% attendance each year",
+      "income_limit": "Not to exceed Rs. 2,50,000 (Rupees Two lakh Fifty thousand) during the last financial year",
+      "min_marks_10": "Not specified (passing Matriculation required)",
+      "min_marks_12": "Not specified",
+      "min_marks_current": "Not specified",
+      "institution_type": "any"
+     },
+     "documents_required": [
+      "Aadhaar number / Aadhaar ID (mandatory)",
+      "Passport-size photograph",
+      "Copies of certificates of previous examinations",
+      "Caste certificate duly signed by authorized officer",
+      "Valid income certificate issued by competent authority",
+      "Undertaking regarding institution charges and reimbursement"
+     ],
+     "application_url": "State/UT scholarship portal (or National Scholarship Portal)",
+     "how_to_apply": "Student registers on the scholarship portal for a Freeship Card before admission; applies for the scholarship on the same day as admission date on the portal.",
+     "is_open": true,
+     "notes": "Freeship Card issued for one year allows admission without pre-payment of fees. Payment via DBT only. Aadhaar authentication mandatory for renewals. Management quota/NRI/spot admission seats are not eligible. Attendance requirement: 75% per academic year.",
+     "_run": {
+      "run_id": "1068c517-8b4a-4b91-9846-b1c76812c731",
+      "steps": 3,
+      "seconds": 115.225
+     },
+     "extraction": "agent",
+     "source_url": "https://scholarships.gov.in/public/schemeGuidelines/Postmatric_SC.pdf",
+     "needs_agent": true,
+     "match": {
+      "score": 100,
+      "verdict": "Likely eligible",
+      "reasons": [
+       "Category SC is eligible",
+       "Covers UG courses",
+       "Family income \u20b91.8L is within the \u20b92.5L limit"
+      ],
       "blockers": [],
       "cautions": [
-       "Sample data \u2014 verify every detail on the official portal"
+       "Extracted by the agent \u2014 verify on the official portal before applying"
       ],
       "deadline": {
        "date": null,
@@ -809,106 +594,149 @@
       }
      }
     },
-    "message": "Extracted 12/12: Sitaram Jindal Foundation Scholarship"
+    "message": "Extracted 6/6: Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
    }
   },
   {
-   "t": 12.623,
+   "t": 422.0,
    "event": {
     "stage": "ranked",
     "results": [
      {
-      "name": "HDFC Bank Parivartan's ECSS Programme",
-      "provider": "HDFC Bank (CSR)",
-      "source_type": "private",
-      "amount": "Up to \u20b975,000 (UG) \u00b7 up to \u20b91 lakh (professional)",
-      "deadline": "03 Nov 2026",
+      "name": "Post-Matric Scholarship for SC students",
+      "provider": "Ministry of Social Justice and Empowerment, Government of India",
+      "source_type": "government",
+      "amount": "\u20b913,000/- hosteller / \u20b97,000/- day scholar (Group-1); \u20b99,500/- hosteller / \u20b96,500/- day scholar (Group-2); \u20b96,000/- hosteller / \u20b93,000/- day scholar (Group-3); \u20b94,000/- hosteller / \u20b92,500/- day scholar (Group-4). 10% extra allowance for Divyang students.",
+      "deadline": "Not stated",
       "eligibility": {
-       "states": "All India",
+       "states": [
+        "All India"
+       ],
        "gender": "All",
-       "categories": "All",
+       "categories": [
+        "SC"
+       ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
        "course_levels": [
+        "Post Matric",
         "Diploma",
         "UG",
         "PG"
        ],
-       "income_limit": "\u20b92.5 lakh per annum",
-       "min_marks_current": "55%"
+       "streams": [
+        "All"
+       ],
+       "years_of_study": "",
+       "income_limit": "\u20b9 2,50,000/- per annum",
+       "min_marks_10": "",
+       "min_marks_12": "",
+       "min_marks_current": "",
+       "institution_type": "any"
       },
       "documents_required": [
-       "Previous year marksheet",
+       "Photograph",
+       "Academic Certificate",
+       "Caste Certificate",
        "Income proof",
-       "Aadhaar card",
-       "Bank passbook",
-       "Fee receipt",
-       "Passport-size photograph",
-       "Admission proof"
+       "Domicile Certificate",
+       "Bank Account Details",
+       "Aadhaar Card"
       ],
-      "application_url": "https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility",
-      "source_url": "https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility",
-      "notes": "Need-based; students facing a family crisis get priority.",
-      "sample": true,
+      "application_url": "https://scholarships.gov.in/",
+      "how_to_apply": "Apply online via the National Scholarship Portal (NSP). New applicants register at https://scholarships.gov.in/registrations/#/ and registered applicants use https://scholarships.gov.in/fresh/loginPage to fill the form, upload documents, and submit.",
+      "is_open": true,
+      "notes": "Scholarship holders cannot hold any other scholarship. Students pursuing C.A./I.C.W.A./C.S./I.C.F.A. are treated as day scholars. Students studying through correspondence/online courses are not eligible for academic allowance.",
+      "_run": {
+       "run_id": "794cb5c5-c69e-44f1-8a94-6eb97be73803",
+       "steps": 21,
+       "seconds": 156.588
+      },
+      "extraction": "agent",
+      "source_url": "https://www.myscheme.gov.in/schemes/pmsfss",
+      "needs_agent": true,
       "match": {
        "score": 100,
        "verdict": "Likely eligible",
        "reasons": [
-        "Covers UG courses",
-        "Family income \u20b91.8L is within the \u20b92.5L limit",
-        "last exam marks 81% meet the 55% minimum"
+        "Category SC is eligible",
+        "Family income \u20b91.8L is within the \u20b92.5L limit"
        ],
        "blockers": [],
        "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
+        "Extracted by the agent \u2014 verify on the official portal before applying"
        ],
        "deadline": {
-        "date": "2026-11-03",
+        "date": null,
         "rolling": false,
         "closed": false,
-        "days_left": 19,
-        "label": "03 Nov 2026 \u00b7 closes in 19 days"
+        "days_left": null,
+        "label": "Not stated"
        }
       }
      },
      {
-      "name": "AICTE Pragati Scholarship for Girls",
-      "provider": "AICTE / Ministry of Education (via National Scholarship Portal)",
+      "name": "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+      "provider": "All India Council for Technical Education (AICTE), Ministry of Education, Government of India",
       "source_type": "government",
-      "amount": "\u20b950,000 per year",
-      "deadline": "08 Nov 2026",
+      "amount": "\u20b950,000 per annum (up to 4 years for Degree first-year entrants, up to 3 years for Diploma first-year entrants)",
+      "deadline": "Not stated (applications invited once a year via National Scholarship Portal; notice published on AICTE/NSP when window opens)",
       "eligibility": {
-       "states": "All India",
-       "gender": "Girls",
-       "categories": "All",
+       "states": [
+        "All India (verified via respective State/UT authorities)"
+       ],
+       "gender": "All",
+       "categories": [
+        "SC",
+        "ST",
+        "OBC-NCL",
+        "General"
+       ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
        "course_levels": [
-        "Diploma",
-        "UG"
+        "Degree",
+        "Diploma"
        ],
        "streams": [
-        "Engineering / Technical"
+        "All AICTE-approved courses"
        ],
-       "income_limit": "\u20b98 lakh per annum",
-       "years_of_study": "1, 2"
+       "years_of_study": "1st/2nd/3rd/4th year (Degree), 1st/2nd/3rd year (Diploma) - as applicable",
+       "income_limit": "\u20b98,00,000 per annum",
+       "min_marks_10": "Not specified",
+       "min_marks_12": "Not specified (merit-based)",
+       "min_marks_current": "Not specified",
+       "institution_type": "Any AICTE-approved institution"
       },
       "documents_required": [
-       "Aadhaar card",
-       "Income certificate",
-       "Class 10 marksheet",
-       "Class 12 marksheet",
-       "Admission letter",
-       "Tuition fee receipt",
-       "Bank passbook",
-       "Category certificate (if applicable)",
-       "Parent's declaration"
+       "Aadhaar card (mandatory, Aadhaar-seeded bank account)",
+       "Bonafide Certificate from institution",
+       "Category Certificate (SC/ST/OBC-NCL)",
+       "Income Certificate (from State/UT authority, family income < \u20b98 lakh)",
+       "10th Mark Sheet (for Diploma level)",
+       "10+2/Equivalent Mark Sheet (for Degree level)",
+       "Death Certificate of parents (for orphan candidates) OR Death Certificate explicitly mentioning Covid-19 (for parents died due to Covid) OR Shaheed Certificate (for martyred forces wards)",
+       "Current year Income Certificate with family income < \u20b98 lakh (for Covid-martyred parents and forces wards categories)"
       ],
-      "application_url": "https://scholarships.gov.in/",
-      "source_url": "https://www.aicte-india.org/schemes/students-development-schemes/Pragati",
-      "notes": "Up to two girl children per family; AICTE-approved institutions only.",
-      "sample": true,
+      "application_url": "https://scholarships.gov.in/fresh/newstdRegfrmInstruction",
+      "how_to_apply": "Register on the National Scholarship Portal (scholarships.gov.in), fill the application form, upload required documents, and submit online.",
+      "is_open": true,
+      "notes": "Maximum 2000 scholarships per year (1000 for Degree, 1000 for Diploma). Candidates already receiving any Central/State/AICTE scholarship are ineligible. Selection is merit-based from qualifying exam. Scholarship disbursed via DBT. CGPA can be converted to percentage using CGPA \u00d7 9.5.",
+      "_run": {
+       "run_id": "9f15a8a6-ed9c-468b-885f-9cbdf647556c",
+       "steps": 12,
+       "seconds": 151.245
+      },
+      "extraction": "agent",
+      "source_url": "https://fellowship.aicte.gov.in/",
+      "needs_agent": true,
       "match": {
        "score": 100,
        "verdict": "Likely eligible",
        "reasons": [
-        "For female students \u2014 matches you",
+        "Category SC is eligible",
         "Covers UG courses",
         "Covers engineering courses",
         "Family income \u20b91.8L is within the \u20b98L limit",
@@ -916,163 +744,83 @@
        ],
        "blockers": [],
        "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
+        "Extracted by the agent \u2014 verify on the official portal before applying"
        ],
        "deadline": {
-        "date": "2026-11-08",
+        "date": null,
         "rolling": false,
         "closed": false,
-        "days_left": 24,
-        "label": "08 Nov 2026 \u00b7 closes in 24 days"
+        "days_left": null,
+        "label": "Not stated"
        }
       }
      },
      {
-      "name": "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-      "provider": "Dept. of Higher Education, Ministry of Education (NSP)",
+      "name": "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)",
+      "provider": "Ministry of Social Justice & Empowerment, Government of India",
       "source_type": "government",
-      "amount": "\u20b912,000 per year (UG) \u00b7 \u20b920,000 per year (PG)",
-      "deadline": "15 Nov 2026",
-      "eligibility": {
-       "states": "All India",
-       "gender": "All",
-       "categories": "All",
-       "course_levels": [
-        "UG",
-        "PG"
-       ],
-       "income_limit": "\u20b94.5 lakh per annum",
-       "min_marks_12": "80%"
-      },
-      "documents_required": [
-       "Class 12 marksheet",
-       "Income certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Bonafide certificate",
-       "Passport-size photograph"
-      ],
-      "application_url": "https://scholarships.gov.in/",
-      "source_url": "https://scholarships.gov.in/",
-      "notes": "Top 20 percentile of the Class 12 board; regular courses only.",
-      "sample": true,
-      "match": {
-       "score": 100,
-       "verdict": "Likely eligible",
-       "reasons": [
-        "Covers UG courses",
-        "Family income \u20b91.8L is within the \u20b94.5L limit",
-        "Class 12 marks 88% meet the 80% minimum"
-       ],
-       "blockers": [],
-       "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-11-15",
-        "rolling": false,
-        "closed": false,
-        "days_left": 31,
-        "label": "15 Nov 2026 \u00b7 closes in 31 days"
-       }
-      }
-     },
-     {
-      "name": "Post-Matric Scholarship for SC students (Telangana ePASS)",
-      "provider": "Government of Telangana \u00b7 SC Development Dept.",
-      "source_type": "government",
-      "amount": "Full tuition fee reimbursement + maintenance allowance",
-      "deadline": "22 Nov 2026",
+      "amount": "Compulsory non-refundable fees (tuition etc.) as fixed by State Fee Fixation/Rationalization Committee + Academic allowance (yearly): Group 1 (professional degree/PG): Hostellers Rs.13,500 / Day Scholars Rs.7,000; Group 2 (other professional courses): Hostellers Rs.9,500 / Day Scholars Rs.6,500; Group 3 (general graduate/PG): Hostellers Rs.6,000 / Day Scholars Rs.3,000; Group 4 (post-matric non-degree): Hostellers Rs.4,000 / Day Scholars Rs.2,500; 10% extra for Divyang (PWD)",
+      "deadline": "Rolling (portals open throughout the year; State/UTs may prescribe specific deadlines)",
       "eligibility": {
        "states": [
-        "Telangana"
+        "State/UT of domicile only (SC category as specified for that State/UT)"
        ],
        "gender": "All",
        "categories": [
-        "Scheduled Caste"
+        "SC"
        ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
        "course_levels": [
-        "Post Matric"
-       ],
-       "income_limit": "\u20b92 lakh per annum",
-       "min_marks_current": "Pass in previous year",
-       "years_of_study": ""
-      },
-      "documents_required": [
-       "Income certificate",
-       "Caste certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Bonafide certificate",
-       "Previous year marks memo",
-       "Ration card"
-      ],
-      "application_url": "https://telanganaepass.cgg.gov.in/",
-      "source_url": "https://telanganaepass.cgg.gov.in/",
-      "notes": "Apply through the Telangana ePASS portal; college verifies the application.",
-      "sample": true,
-      "match": {
-       "score": 100,
-       "verdict": "Likely eligible",
-       "reasons": [
-        "Open to students of Telangana",
-        "Category SC is eligible",
-        "Family income \u20b91.8L is within the \u20b92L limit"
-       ],
-       "blockers": [],
-       "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-11-22",
-        "rolling": false,
-        "closed": false,
-        "days_left": 38,
-        "label": "22 Nov 2026 \u00b7 closes in 38 days"
-       }
-      }
-     },
-     {
-      "name": "Sitaram Jindal Foundation Scholarship",
-      "provider": "Sitaram Jindal Foundation (trust)",
-      "source_type": "private",
-      "amount": "\u20b9500\u2013\u20b93,200 per month depending on course",
-      "deadline": "Rolling \u2014 applications accepted throughout the year",
-      "eligibility": {
-       "states": "All India",
-       "gender": "All",
-       "categories": "All",
-       "course_levels": [
-        "School",
+        "Class 11-12",
         "Diploma",
         "UG",
-        "PG"
+        "PG",
+        "PhD",
+        "Professional Courses"
        ],
-       "income_limit": "\u20b94 lakh per annum",
-       "min_marks_current": "60%"
+       "streams": [
+        "All"
+       ],
+       "years_of_study": "Up to completion of the course subject to satisfactory academic performance and 75% attendance each year",
+       "income_limit": "Not to exceed Rs. 2,50,000 (Rupees Two lakh Fifty thousand) during the last financial year",
+       "min_marks_10": "Not specified (passing Matriculation required)",
+       "min_marks_12": "Not specified",
+       "min_marks_current": "Not specified",
+       "institution_type": "any"
       },
       "documents_required": [
-       "Previous year marksheet",
-       "Income certificate",
-       "Bonafide certificate",
-       "Bank passbook",
-       "Passport-size photograph"
+       "Aadhaar number / Aadhaar ID (mandatory)",
+       "Passport-size photograph",
+       "Copies of certificates of previous examinations",
+       "Caste certificate duly signed by authorized officer",
+       "Valid income certificate issued by competent authority",
+       "Undertaking regarding institution charges and reimbursement"
       ],
-      "application_url": "https://www.sitaramjindalfoundation.org/scholarships-for-students-in-bangalore.php",
-      "source_url": "https://www.sitaramjindalfoundation.org/",
-      "notes": "Applications by post; separate marks criteria for boys and girls.",
-      "sample": true,
+      "application_url": "State/UT scholarship portal (or National Scholarship Portal)",
+      "how_to_apply": "Student registers on the scholarship portal for a Freeship Card before admission; applies for the scholarship on the same day as admission date on the portal.",
+      "is_open": true,
+      "notes": "Freeship Card issued for one year allows admission without pre-payment of fees. Payment via DBT only. Aadhaar authentication mandatory for renewals. Management quota/NRI/spot admission seats are not eligible. Attendance requirement: 75% per academic year.",
+      "_run": {
+       "run_id": "1068c517-8b4a-4b91-9846-b1c76812c731",
+       "steps": 3,
+       "seconds": 115.225
+      },
+      "extraction": "agent",
+      "source_url": "https://scholarships.gov.in/public/schemeGuidelines/Postmatric_SC.pdf",
+      "needs_agent": true,
       "match": {
        "score": 100,
        "verdict": "Likely eligible",
        "reasons": [
+        "Category SC is eligible",
         "Covers UG courses",
-        "Family income \u20b91.8L is within the \u20b94L limit",
-        "last exam marks 81% meet the 60% minimum"
+        "Family income \u20b91.8L is within the \u20b92.5L limit"
        ],
        "blockers": [],
        "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
+        "Extracted by the agent \u2014 verify on the official portal before applying"
        ],
        "deadline": {
         "date": null,
@@ -1084,504 +832,393 @@
       }
      },
      {
-      "name": "Kotak Kanya Scholarship",
-      "provider": "Kotak Education Foundation (CSR)",
-      "source_type": "private",
-      "amount": "\u20b91.5 lakh per year for the full course",
-      "deadline": "24 Oct 2026",
+      "name": "Pragati Scholarship Scheme For Girl Students (Technical Diploma)",
+      "provider": "Ministry of Education",
+      "source_type": "government",
+      "amount": "Rs. 50,000/- per annum (maximum 3 years for first-year admitted students and maximum 2 years for second-year admitted students through lateral entry)",
+      "deadline": "Not stated",
       "eligibility": {
-       "states": "All India",
+       "states": [
+        "Andaman and Nicobar Islands",
+        "Jammu and Kashmir",
+        "Ladakh",
+        "Dadra and Nagar Haveli & Daman and Diu",
+        "Lakshadweep",
+        "Arunachal Pradesh",
+        "Assam",
+        "Manipur",
+        "Meghalaya",
+        "Mizoram",
+        "Nagaland",
+        "Sikkim",
+        "Tripura"
+       ],
        "gender": "Female",
-       "categories": "All",
+       "categories": [
+        "All"
+       ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
        "course_levels": [
-        "UG"
+        "Diploma"
        ],
        "streams": [
-        "Engineering",
-        "Medicine",
-        "Law",
-        "Management",
-        "Architecture"
+        "All"
        ],
-       "income_limit": "\u20b93.2 lakh per annum",
-       "min_marks_12": "85%",
-       "years_of_study": "1"
+       "years_of_study": "1st or 2nd year (lateral entry)",
+       "income_limit": "Rs. 8,00,000 per annum",
+       "min_marks_10": "",
+       "min_marks_12": "",
+       "min_marks_current": "",
+       "institution_type": "any"
       },
       "documents_required": [
-       "Class 12 marksheet",
-       "Income proof",
-       "Aadhaar card",
-       "Admission proof",
-       "Fee receipt",
-       "Bank account details",
-       "Passport-size photograph"
+       "SSC/10th certificate",
+       "HSC/12th certificate (in case of degree level)",
+       "ITI certificate (in case of lateral entry for diploma level)",
+       "Diploma certificate (in case of lateral entry for degree level)",
+       "Bank Passbook",
+       "Category Certificate",
+       "Aadhaar Card",
+       "Passport-size photo",
+       "Study Certificate (Appendix-I)",
+       "Annual Family Income Certificate (Appendix II)",
+       "Parent's Declaration (Appendix-III)",
+       "Bank Mandate Form (Appendix-IV)"
       ],
-      "application_url": "https://kotakeducation.org/kotak-kanya-scholarship/",
-      "source_url": "https://kotakeducation.org/kotak-kanya-scholarship/",
-      "notes": "Merit-cum-means; for girls entering professional courses at premier institutes.",
-      "sample": true,
+      "application_url": "https://scholarships.gov.in/",
+      "how_to_apply": "Apply online via the National Scholarships Portal (NSP). New registrants must register first, then log in with Application ID and password, fill the application form, upload documents, and submit.",
+      "is_open": true,
+      "notes": "Maximum two girls per family can avail this scheme. Applicants who failed/dropped out, receive other financial assistance, or have a gap of more than two years since qualifying exams are ineligible. Payment is through DBT.",
+      "_run": {
+       "run_id": "fe6ae289-b684-4d79-8088-f77ff3928f05",
+       "steps": 4,
+       "seconds": 52.193
+      },
+      "extraction": "agent",
+      "source_url": "https://www.myscheme.gov.in/schemes/psgs-dip",
+      "needs_agent": true,
       "match": {
        "score": 25,
        "verdict": "Not eligible",
        "reasons": [
         "For female students \u2014 matches you",
+        "Family income \u20b91.8L is within the \u20b98L limit",
+        "Year 2 students can apply"
+       ],
+       "blockers": [
+        "Only for Jammu and Kashmir, Ladakh, Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim, Tripura students (you entered Telangana)",
+        "Only for Diploma courses (you are UG)"
+       ],
+       "cautions": [
+        "Extracted by the agent \u2014 verify on the official portal before applying"
+       ],
+       "deadline": {
+        "date": null,
+        "rolling": false,
+        "closed": false,
+        "days_left": null,
+        "label": "Not stated"
+       }
+      }
+     },
+     {
+      "name": "Merit Scholarship to SC/ST/OBC/Minority students studying in recognised Colleges/Professional/Technical Institutions",
+      "provider": "Department for the Welfare of SC/ST/OBC, Government of NCT of Delhi",
+      "source_type": "government",
+      "amount": "Monthly scholarships ranging from \u20b9420/- to \u20b91,860/- per month for 12 months, depending on the course group (Group A, B, C, D) and status (Hosteller/Day Scholar)",
+      "deadline": "Not stated",
+      "eligibility": {
+       "states": [
+        "Delhi"
+       ],
+       "gender": "All",
+       "categories": [
+        "SC",
+        "ST",
+        "OBC",
+        "Minority"
+       ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
+       "course_levels": [
+        "Diploma",
+        "UG",
+        "PG"
+       ],
+       "streams": [
+        "All"
+       ],
+       "years_of_study": "Not stated",
+       "income_limit": "\u20b92,00,000/- per annum for OBC and Minority students",
+       "min_marks_10": "Not stated",
+       "min_marks_12": "Not stated",
+       "min_marks_current": "Minimum 60% marks in previous examination",
+       "institution_type": "any"
+      },
+      "documents_required": [
+       "Income Certificate issued by competent authorities of GNCTD (for OBC and Minority students)",
+       "Affidavit (for education gap up to 3 years)",
+       "Caste Certificate (for SC/ST/OBC)",
+       "Domicile Certificate (if caste certificate not issued by GNCTD)",
+       "Proof of residency in Delhi (for Minority)",
+       "Declaration of minority status"
+      ],
+      "application_url": "https://edistrict.delhigovt.nic.in/",
+      "how_to_apply": "Online via the e-District Portal of the Govt. of NCT of Delhi by registering/logging in, selecting 'Apply Service', and submitting the application form with required documents.",
+      "is_open": true,
+      "notes": "Scholarship reduced to 50% if a student fails the annual examination unless due to medical grounds or natural calamities. Scholarship paid for 12 months.",
+      "_run": {
+       "run_id": "07bc5a00-404e-4a30-bfb2-d908d6e332e7",
+       "steps": 7,
+       "seconds": 76.445
+      },
+      "extraction": "agent",
+      "source_url": "https://www.myscheme.gov.in/schemes/smssssictpi",
+      "needs_agent": true,
+      "match": {
+       "score": 25,
+       "verdict": "Not eligible",
+       "reasons": [
+        "Category SC is eligible",
         "Covers UG courses",
-        "Covers engineering courses",
-        "Family income \u20b91.8L is within the \u20b93.2L limit",
-        "Class 12 marks 88% meet the 85% minimum"
-       ],
-       "blockers": [
-        "Only for students in year [1] (you are in year 2)"
-       ],
-       "cautions": [
-        "Closing soon \u2014 only 9 days left",
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-10-24",
-        "rolling": false,
-        "closed": false,
-        "days_left": 9,
-        "label": "24 Oct 2026 \u00b7 closes in 9 days"
-       }
-      }
-     },
-     {
-      "name": "Post-Matric Scholarship for Minority Communities",
-      "provider": "Ministry of Minority Affairs (NSP)",
-      "source_type": "government",
-      "amount": "Admission + tuition fee up to \u20b910,000 per year + maintenance allowance",
-      "deadline": "13 Nov 2026",
-      "eligibility": {
-       "states": "All India",
-       "gender": "All",
-       "categories": "All",
-       "minority_only": true,
-       "course_levels": [
-        "Post Matric"
-       ],
-       "income_limit": "\u20b92 lakh per annum",
-       "min_marks_current": "50%"
-      },
-      "documents_required": [
-       "Self-declaration of community",
-       "Income certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Previous year marksheet",
-       "Bonafide certificate"
-      ],
-      "application_url": "https://scholarships.gov.in/",
-      "source_url": "https://scholarships.gov.in/",
-      "notes": "30% of scholarships are earmarked for girl students.",
-      "sample": true,
-      "match": {
-       "score": 25,
-       "verdict": "Not eligible",
-       "reasons": [
         "Family income \u20b91.8L is within the \u20b92L limit",
-        "last exam marks 81% meet the 50% minimum"
+        "last exam marks 81% meet the 60% minimum"
        ],
        "blockers": [
-        "Only for notified minority communities"
+        "Only for Delhi students (you entered Telangana)"
        ],
        "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
+        "Extracted by the agent \u2014 verify on the official portal before applying"
        ],
        "deadline": {
-        "date": "2026-11-13",
+        "date": null,
         "rolling": false,
         "closed": false,
-        "days_left": 29,
-        "label": "13 Nov 2026 \u00b7 closes in 29 days"
+        "days_left": null,
+        "label": "Not stated"
        }
       }
      },
      {
-      "name": "Post-Matric Scholarship for Students with Disabilities",
-      "provider": "Dept. of Empowerment of Persons with Disabilities (NSP)",
+      "name": "PM-YASASVI: Post-Matric Scholarship for OBC, EBC and DNT Students",
+      "provider": "Ministry of Social Justice & Empowerment, Government of India",
       "source_type": "government",
-      "amount": "Maintenance allowance + course fee up to \u20b91.5 lakh per year",
-      "deadline": "19 Nov 2026",
+      "amount": "\u20b920,000/year (Group 1 - Degree/PG Professional: \u20b910,000 academic allowance + \u20b910,000 tuition fee); \u20b913,000/year (Group 2 - Other Professional: \u20b98,000 + \u20b95,000); \u20b98,000/year (Group 3 - Graduate/PG: \u20b96,000 + \u20b92,000); \u20b95,000/year (Group 4 - Post-matric non-degree: \u20b95,000 + \u20b90)",
+      "deadline": "30th June",
       "eligibility": {
-       "states": "All India",
-       "gender": "All",
-       "categories": "All",
-       "pwd_only": true,
-       "course_levels": [
-        "Post Matric"
+       "states": [
+        "All India (applies to all States/UTs; scholarship awarded by the State to which the applicant belongs - permanently settled)",
+        "Studies in India only"
        ],
-       "income_limit": "\u20b92.5 lakh per annum"
-      },
-      "documents_required": [
-       "Disability certificate (40%+)",
-       "Income certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Previous year marksheet",
-       "Bonafide certificate"
-      ],
-      "application_url": "https://scholarships.gov.in/",
-      "source_url": "https://disabilityaffairs.gov.in/",
-      "notes": "Benchmark disability of 40% or more.",
-      "sample": true,
-      "match": {
-       "score": 25,
-       "verdict": "Not eligible",
-       "reasons": [
-        "Family income \u20b91.8L is within the \u20b92.5L limit"
-       ],
-       "blockers": [
-        "Only for students with a disability (40%+)"
-       ],
-       "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-11-19",
-        "rolling": false,
-        "closed": false,
-        "days_left": 35,
-        "label": "19 Nov 2026 \u00b7 closes in 35 days"
-       }
-      }
-     },
-     {
-      "name": "PM YASASVI Post-Matric Scholarship (OBC / EBC / DNT)",
-      "provider": "Ministry of Social Justice & Empowerment (NSP)",
-      "source_type": "government",
-      "amount": "Academic allowance \u20b95,000\u2013\u20b920,000 per year + fee support",
-      "deadline": "28 Nov 2026",
-      "eligibility": {
-       "states": "All India",
-       "gender": "All",
+       "gender": "All (restriction: only two boys per family eligible; no restriction for girls)",
        "categories": [
         "OBC",
         "EBC",
         "DNT"
        ],
+       "minority_only": false,
+       "pwd_only": false,
+       "single_girl_child_only": false,
        "course_levels": [
-        "Post Matric"
+        "Post-Matric",
+        "Class 11-12",
+        "Diploma",
+        "UG",
+        "PG",
+        "PhD",
+        "Professional"
        ],
-       "income_limit": "\u20b92.5 lakh per annum"
+       "streams": [
+        "Engineering",
+        "Medicine",
+        "Arts",
+        "Commerce",
+        "Science",
+        "Law",
+        "Management",
+        "Veterinary",
+        "Agriculture",
+        "Hotel Management",
+        "Mass Communication",
+        "Nursing",
+        "Pharmacy",
+        "All"
+       ],
+       "years_of_study": "Up to the completion of the course",
+       "income_limit": "\u20b92.50 lakhs per annum (annual family income of parents/guardians)",
+       "min_marks_10": "Passed Matriculation (recognized Board/University)",
+       "min_marks_12": "Passed Higher Secondary (recognized Board/University)",
+       "min_marks_current": "Not specified",
+       "institution_type": "any (recognized institutions/universities/colleges)"
       },
       "documents_required": [
-       "Caste certificate",
-       "Income certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Previous year marksheet",
-       "Bonafide certificate",
-       "Domicile certificate"
+       "Aadhaar Card",
+       "Passport-size photograph",
+       "Educational qualification marksheets/certificates",
+       "Valid Income certificate issued by the competent Authority",
+       "Domicile Certificate",
+       "Caste/Community Certificate issued by the competent authority",
+       "Disability certificate (if applicable)",
+       "Bank Account details",
+       "Any other documents as required"
       ],
       "application_url": "https://scholarships.gov.in/",
-      "source_url": "https://socialjustice.gov.in/",
-      "notes": "Applications are verified by the institute and then the state nodal officer.",
-      "sample": true,
+      "how_to_apply": "Register/login on the National Scholarship Portal (NSP) or respective State/UT scholarship portal, fill the application form, upload required documents, and submit before 30th June each year.",
+      "is_open": true,
+      "notes": "Centrally Sponsored Scheme under Samagra Shiksha. Restriction: Only two boys per family can receive the scholarship; no limit on girls. Freeship Card provided for tuition/hostel fee reimbursement. Application portal opens 1st April and closes 30th June. Students belonging to one State but studying in another receive scholarship from their home State. Correspondence/online students eligible for tuition fees but not academic allowance. Course renewal available for illness or failure in Group I exams. Cannot avail simultaneously with other similar scholarships.",
+      "_run": {
+       "run_id": "f49a5824-736d-4d5b-bad2-75c8c24ef521",
+       "steps": 12,
+       "seconds": 168.739
+      },
+      "extraction": "agent",
+      "source_url": "https://www.myscheme.gov.in/schemes/pm-yasasvipmsobcebcdnts",
+      "needs_agent": true,
       "match": {
        "score": 25,
        "verdict": "Not eligible",
        "reasons": [
+        "For female students \u2014 matches you",
         "Family income \u20b91.8L is within the \u20b92.5L limit"
        ],
        "blockers": [
         "Only for OBC category (you are SC)"
        ],
        "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-11-28",
-        "rolling": false,
-        "closed": false,
-        "days_left": 44,
-        "label": "28 Nov 2026 \u00b7 closes in 44 days"
-       }
-      }
-     },
-     {
-      "name": "Bihar Post-Matric Scholarship for BC / EBC students",
-      "provider": "Government of Bihar \u00b7 BC & EBC Welfare Dept. (PMS Online)",
-      "source_type": "government",
-      "amount": "Course fee reimbursement up to \u20b915,000 per year (varies by course)",
-      "deadline": "04 Dec 2026",
-      "eligibility": {
-       "states": [
-        "Bihar"
-       ],
-       "gender": "All",
-       "categories": [
-        "Other Backward Classes",
-        "EBC"
-       ],
-       "course_levels": [
-        "Post Matric"
-       ],
-       "income_limit": "\u20b93 lakh per annum"
-      },
-      "documents_required": [
-       "Caste certificate",
-       "Income certificate",
-       "Residence certificate",
-       "Aadhaar card",
-       "Bank passbook",
-       "Previous year marksheet",
-       "Fee receipt",
-       "Bonafide certificate"
-      ],
-      "application_url": "https://pmsonline.bih.nic.in/",
-      "source_url": "https://pmsonline.bih.nic.in/",
-      "notes": "Students studying inside or outside Bihar can apply if domiciled in Bihar.",
-      "sample": true,
-      "match": {
-       "score": 25,
-       "verdict": "Not eligible",
-       "reasons": [
-        "Family income \u20b91.8L is within the \u20b93L limit"
-       ],
-       "blockers": [
-        "Only for Bihar students (you entered Telangana)",
-        "Only for OBC category (you are SC)"
-       ],
-       "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-12-04",
-        "rolling": false,
-        "closed": false,
-        "days_left": 50,
-        "label": "04 Dec 2026 \u00b7 closes in 50 days"
-       }
-      }
-     },
-     {
-      "name": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti (MahaDBT)",
-      "provider": "Government of Maharashtra \u00b7 Higher & Technical Education",
-      "source_type": "government",
-      "amount": "50% of tuition and exam fees reimbursed",
-      "deadline": "14 Dec 2026",
-      "eligibility": {
-       "states": [
-        "Maharashtra"
-       ],
-       "gender": "All",
-       "categories": [
-        "General",
-        "OBC",
-        "EWS"
-       ],
-       "course_levels": [
-        "UG",
-        "PG"
-       ],
-       "streams": [
-        "Professional courses"
-       ],
-       "income_limit": "\u20b98 lakh per annum"
-      },
-      "documents_required": [
-       "Domicile certificate",
-       "Income certificate",
-       "Aadhaar card",
-       "Class 12 marksheet",
-       "Admission / CAP allotment letter",
-       "Fee receipt",
-       "Bank passbook"
-      ],
-      "application_url": "https://mahadbt.maharashtra.gov.in/",
-      "source_url": "https://mahadbt.maharashtra.gov.in/",
-      "notes": "Apply on MahaDBT; the college forwards the application.",
-      "sample": true,
-      "match": {
-       "score": 25,
-       "verdict": "Not eligible",
-       "reasons": [
-        "Covers UG courses",
-        "Family income \u20b91.8L is within the \u20b98L limit"
-       ],
-       "blockers": [
-        "Only for Maharashtra students (you entered Telangana)",
-        "Only for General/OBC/EWS category (you are SC)"
-       ],
-       "cautions": [
-        "Sample data \u2014 verify every detail on the official portal"
-       ],
-       "deadline": {
-        "date": "2026-12-14",
-        "rolling": false,
-        "closed": false,
-        "days_left": 60,
-        "label": "14 Dec 2026 \u00b7 closes in 60 days"
-       }
-      }
-     },
-     {
-      "name": "Reliance Foundation Undergraduate Scholarship",
-      "provider": "Reliance Foundation (CSR)",
-      "source_type": "private",
-      "amount": "Up to \u20b92 lakh over the course",
-      "deadline": "09 Oct 2026",
-      "eligibility": {
-       "states": "All India",
-       "gender": "All",
-       "categories": "All",
-       "course_levels": [
-        "UG"
-       ],
-       "income_limit": "\u20b915 lakh per annum",
-       "min_marks_12": "60%",
-       "years_of_study": "1"
-      },
-      "documents_required": [
-       "Class 12 marksheet",
-       "Income proof",
-       "Aadhaar card",
-       "Admission proof",
-       "Passport-size photograph"
-      ],
-      "application_url": "https://scholarships.reliancefoundation.org/",
-      "source_url": "https://scholarships.reliancefoundation.org/",
-      "notes": "Merit-cum-means; includes an aptitude test.",
-      "sample": true,
-      "match": {
-       "score": 25,
-       "verdict": "Not eligible",
-       "reasons": [
-        "Covers UG courses",
-        "Family income \u20b91.8L is within the \u20b915L limit",
-        "Class 12 marks 88% meet the 60% minimum"
-       ],
-       "blockers": [
-        "Only for students in year [1] (you are in year 2)"
-       ],
-       "cautions": [
         "Deadline has passed \u2014 watch for the next cycle",
-        "Sample data \u2014 verify every detail on the official portal"
+        "Extracted by the agent \u2014 verify on the official portal before applying"
        ],
        "deadline": {
-        "date": "2026-10-09",
+        "date": "2026-06-30",
         "rolling": false,
         "closed": true,
-        "days_left": -6,
-        "label": "Closed on 09 Oct 2026"
+        "days_left": -108,
+        "label": "Closed on 30 Jun 2026"
        }
       }
      }
     ],
     "checklist": [
      {
-      "document": "Bank passbook / account details",
+      "document": "Aadhaar card",
       "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "AICTE Pragati Scholarship for Girls",
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)",
-       "Sitaram Jindal Foundation Scholarship"
+       "Post-Matric Scholarship for SC students",
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
       ],
-      "count": 5
+      "count": 3
+     },
+     {
+      "document": "Caste / category certificate",
+      "schemes": [
+       "Post-Matric Scholarship for SC students",
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
+      ],
+      "count": 3
      },
      {
       "document": "Income certificate",
       "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "AICTE Pragati Scholarship for Girls",
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)",
-       "Sitaram Jindal Foundation Scholarship"
-      ],
-      "count": 5
-     },
-     {
-      "document": "Aadhaar card",
-      "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "AICTE Pragati Scholarship for Girls",
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)"
-      ],
-      "count": 4
-     },
-     {
-      "document": "Bonafide / institution verification",
-      "schemes": [
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)",
-       "Sitaram Jindal Foundation Scholarship"
+       "Post-Matric Scholarship for SC students",
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students",
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
       ],
       "count": 3
      },
      {
       "document": "Passport-size photograph",
       "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)",
-       "Sitaram Jindal Foundation Scholarship"
-      ],
-      "count": 3
-     },
-     {
-      "document": "Previous year marksheet",
-      "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)",
-       "Sitaram Jindal Foundation Scholarship"
-      ],
-      "count": 3
-     },
-     {
-      "document": "Admission / fee receipt",
-      "schemes": [
-       "HDFC Bank Parivartan's ECSS Programme",
-       "AICTE Pragati Scholarship for Girls"
+       "Post-Matric Scholarship for SC students",
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
       ],
       "count": 2
      },
      {
-      "document": "Caste / category certificate",
+      "document": "Academic certificate",
       "schemes": [
-       "AICTE Pragati Scholarship for Girls",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)"
+       "Post-Matric Scholarship for SC students"
       ],
-      "count": 2
+      "count": 1
      },
      {
-      "document": "Class 12 marksheet",
+      "document": "Bank passbook / account details",
       "schemes": [
-       "AICTE Pragati Scholarship for Girls",
-       "Central Sector Scheme of Scholarship for College & University Students (CSSS)"
+       "Post-Matric Scholarship for SC students"
       ],
-      "count": 2
+      "count": 1
      },
      {
-      "document": "Ration card",
+      "document": "Bonafide / institution verification",
       "schemes": [
-       "AICTE Pragati Scholarship for Girls",
-       "Post-Matric Scholarship for SC students (Telangana ePASS)"
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students"
       ],
-      "count": 2
+      "count": 1
      },
      {
       "document": "Class 10 marksheet",
       "schemes": [
-       "AICTE Pragati Scholarship for Girls"
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students"
+      ],
+      "count": 1
+     },
+     {
+      "document": "Class 12 marksheet",
+      "schemes": [
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students"
+      ],
+      "count": 1
+     },
+     {
+      "document": "Death certificate of parents (for orphan candidates) or death certificate explicitly mentioning covid-19 (for parents died due to covid) or shaheed certificate (for martyred forces wards)",
+      "schemes": [
+       "AICTE \u2013 SWANATH Scholarship Scheme For Students"
+      ],
+      "count": 1
+     },
+     {
+      "document": "Domicile / residence certificate",
+      "schemes": [
+       "Post-Matric Scholarship for SC students"
+      ],
+      "count": 1
+     },
+     {
+      "document": "Parent's declaration / affidavit",
+      "schemes": [
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
+      ],
+      "count": 1
+     },
+     {
+      "document": "Previous year marksheet",
+      "schemes": [
+       "Post Matric Scholarships to the students belonging of Scheduled Castes for studies in India (PMS-SC)"
       ],
       "count": 1
      }
     ],
     "meta": {
-     "mode": "mock",
-     "sample": true,
+     "mode": "live",
+     "sample": false,
      "queries": [
-      "[sample] post matric scholarship Telangana SC",
-      "[sample] B.Tech scholarship Female 2026-27"
+      "post matric scholarship Telangana SC B.Tech CSE 2026-27",
+      "B.Tech CSE students scholarship scheme SC girls eligibility documents",
+      "B.Tech CSE scholarship girls year 2 2026-27 India apply online",
+      "CSR foundation trust scholarship engineering students income below 1 lakh 2026-27"
      ],
-     "agent_runs": 0,
-     "credits_used": 0,
-     "cache_hits": 0,
-     "seconds": 13.5
+     "candidates": 33,
+     "kept": 32,
+     "agent_runs": 4,
+     "cache_hits": 2,
+     "skipped_for_budget": 26,
+     "seconds": 422.0,
+     "errors": []
     },
-    "message": "Ranked 12 schemes"
+    "message": "Ranked 6 schemes"
    }
   }
  ]
