@@ -1,6 +1,6 @@
 # Scholarship Navigator — deck content (12 slides)
 
-Format per slide: **headline** · bullets · *speaker note* · screenshot. Numbers: every figure is cited, marked `[MEASURED]` (fill from your own runs), or `[SOURCE NEEDED]`. Do not present an unsourced number.
+Format per slide: **headline** · bullets · *speaker note* · screenshot. Numbers: every figure is cited or measured (slide 10 numbers come from `evidence/live_bench.json`); anything still unverified is marked `[SOURCE NEEDED]`. Do not present an unsourced number.
 
 ---
 
