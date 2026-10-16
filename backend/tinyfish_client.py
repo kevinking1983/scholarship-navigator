@@ -250,6 +250,18 @@ def _search_one(q: dict[str, Any]) -> list[dict[str, Any]]:
     return results
 
 
+_TRACKING = re.compile(r"(^|&)(utm_[a-z]+|fbclid|gclid|ref)=[^&]*")
+
+
+def dedupe_key(url: str) -> str:
+    """Same page -> same key. Keeps the query string: many portals (MahaDBT, ePASS) serve different schemes at
+    one path that differs only by ?str=... / ?id=...; only fragments and tracking params are dropped."""
+    url = url.split("#", 1)[0]
+    path, _, query = url.partition("?")
+    query = _TRACKING.sub("", query).strip("&")
+    return (path.rstrip("/") + ("?" + query if query else "")).lower()
+
+
 def search_candidates(queries: list[dict[str, Any]]) -> list[dict[str, Any]]:
     seen: set[str] = set()
     out: list[dict[str, Any]] = []
@@ -260,7 +272,7 @@ def search_candidates(queries: list[dict[str, Any]]) -> list[dict[str, Any]]:
             results = []
             out.append({"_error": f"search failed for '{q['query']}': {exc}"})
         for r in results:
-            key = re.sub(r"[#?].*$", "", r["url"]).rstrip("/").lower()
+            key = dedupe_key(r["url"])
             if key in seen or not r["url"].startswith("http"):
                 continue
             seen.add(key)

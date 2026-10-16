@@ -351,6 +351,15 @@ def test_agent_budget_prefers_js_only_then_government():
     assert kept[0]["needs_agent"] and not kept[1]["needs_agent"]
 
 
+def test_dedupe_keeps_query_string_schemes_but_drops_tracking():
+    a = "https://mahadbt.maharashtra.gov.in/SchemeData/SchemeData?str=AAA"
+    b = "https://mahadbt.maharashtra.gov.in/SchemeData/SchemeData?str=BBB"
+    assert tf.dedupe_key(a) != tf.dedupe_key(b)                      # different schemes, same path
+    assert tf.dedupe_key(a + "#top") == tf.dedupe_key(a)
+    assert tf.dedupe_key("https://x.org/s/?utm_source=fb&id=7") == tf.dedupe_key("https://x.org/s?id=7")
+    assert tf.dedupe_key("https://X.org/S/") == tf.dedupe_key("https://x.org/s")
+
+
 def test_profile_from_dict_is_forgiving():
     p = Profile.from_dict({"family_income": "2,50,000", "marks_12": "88%", "year": "2", "minority": "yes", "pwd": "no",
                            "state": "TS"})
