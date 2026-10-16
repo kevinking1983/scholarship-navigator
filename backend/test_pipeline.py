@@ -349,6 +349,16 @@ def test_agent_budget_prefers_js_only_then_government():
         _cache.cached = orig
     assert [k["url"] for k in kept] == [cands[2]["url"], cands[1]["url"], cands[0]["url"]]
     assert kept[0]["needs_agent"] and not kept[1]["needs_agent"]
+    # the student's own state portal outranks even JS-only pages
+    cands2 = cands + [{"url": "https://mahadbt.maharashtra.gov.in/SchemeData?str=1", "title": "Shahu scholarship",
+                       "snippet": "", "position": 9, "source_type": "government"}]
+    fake["results"].append({"url": cands2[3]["url"], "title": "Shahu scholarship", "text": long})
+    _cache.cached = lambda ns, m, producer: (fake, True)
+    try:
+        kept2 = tf.fetch_filter(cands2, priority_domains=("mahadbt.maharashtra.gov.in",))
+    finally:
+        _cache.cached = orig
+    assert kept2[0]["url"] == cands2[3]["url"]
 
 
 def test_dedupe_keeps_query_string_schemes_but_drops_tracking():

@@ -293,8 +293,10 @@ def looks_like_scholarship(text: str) -> bool:
     return any(w in low for w in SCHOLARSHIP_WORDS)
 
 
-def fetch_filter(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Render every candidate (batches of 10), keep scholarship pages, flag thin/JS-only pages as needs_agent."""
+def fetch_filter(candidates: list[dict[str, Any]], priority_domains: tuple[str, ...] = ()) -> list[dict[str, Any]]:
+    """Render every candidate (batches of 10), keep scholarship pages, flag thin/JS-only pages as needs_agent.
+
+    priority_domains (e.g. the student's own state portal) get first claim on the Agent budget."""
     kept: list[dict[str, Any]] = []
     for i in range(0, len(candidates), 10):
         batch = candidates[i:i + 10]
@@ -325,9 +327,15 @@ def fetch_filter(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
             if relevant or (c["needs_agent"] and c.get("source_type") == "government"):
                 c["page_excerpt"] = text[:1500]
                 kept.append(c)
-    # Agent budget: pages Fetch could not read go first (highest value), then government portals, then search order
-    kept.sort(key=lambda c: (0 if c["needs_agent"] else 1, 0 if c.get("source_type") == "government" else 1,
-                             c.get("position", 99)))
+    # Agent budget: the student's own state portal first, then pages Fetch could not read (highest value),
+    # then other government portals, then search order
+    def _prio(c):
+        host = (urlparse(c["url"]).hostname or "").lower()
+        own_state = any(host == d or host.endswith("." + d) for d in priority_domains)
+        return (0 if own_state else 1, 0 if c["needs_agent"] else 1,
+                0 if c.get("source_type") == "government" else 1, c.get("position", 99))
+
+    kept.sort(key=_prio)
     return kept
 
 
@@ -433,7 +441,8 @@ def _live_discover_events(profile: Profile, top_k: int) -> Iterator[dict[str, An
                "queries": [q["query"] for q in queries], "agent_runs": 0, "cache_hits": 0, "seconds": round(time.time() - t0, 1),
                "errors": errs}, "message": "No pages found"}
         return
-    kept = fetch_filter(cands)
+    home_portal = STATE_PORTALS.get(profile.n_domicile or "")
+    kept = fetch_filter(cands, priority_domains=(home_portal,) if home_portal else ())
     yield {"stage": "kept", "count": len(kept), "needs_agent": sum(1 for k in kept if k["needs_agent"]),
            "message": f"Kept {len(kept)} scholarship pages"}
     todo = kept[:top_k]
