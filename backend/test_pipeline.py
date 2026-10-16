@@ -285,6 +285,30 @@ def test_replay_record_and_play_roundtrip():
         assert played[-1]["meta"]["sample"] is True
 
 
+def test_gated_agent_config_fallback():
+    """max_steps is a gated beta feature on some accounts; the client must retry without it, once."""
+    tf._GATED_FIELDS_OK = None
+    calls = []
+
+    def fake(cfg):
+        calls.append(cfg.model_dump(exclude_none=True))
+        if len(calls) == 1:
+            raise tf.__class__ if False else PermissionError("Your account is not enabled for custom max steps yet. Join the beta program at /beta")
+        return "ok"
+
+    assert tf.call_with_config_fallback(fake, "strict", 60, 300) == "ok"
+    assert calls[0] == {"mode": "strict", "max_steps": 60, "max_duration_seconds": 300}
+    assert calls[1] == {"mode": "strict"} and tf._GATED_FIELDS_OK is False
+    assert tf.agent_config("strict", 60, 300).model_dump(exclude_none=True) == {"mode": "strict"}   # remembered
+    tf._GATED_FIELDS_OK = None
+    try:
+        tf.call_with_config_fallback(lambda cfg: (_ for _ in ()).throw(RuntimeError("other error")), "strict", 60, 300)
+        assert False, "unrelated errors must propagate"
+    except RuntimeError:
+        pass
+    tf._GATED_FIELDS_OK = None
+
+
 def test_profile_from_dict_is_forgiving():
     p = Profile.from_dict({"family_income": "2,50,000", "marks_12": "88%", "year": "2", "minority": "yes", "pwd": "no",
                            "state": "TS"})

@@ -36,8 +36,8 @@ def main() -> int:
               "https://agent.tinyfish.ai/api-keys", file=sys.stderr)
         return 2
 
-    from tinyfish import AgentConfig, TinyFish
-    from tinyfish_client import SCHOLARSHIP_SCHEMA, extraction_goal
+    from tinyfish import TinyFish
+    from tinyfish_client import SCHOLARSHIP_SCHEMA, call_with_config_fallback, extraction_goal
 
     client = TinyFish(api_key=key)
     evidence = {"ran_at": datetime.now().isoformat(timespec="seconds"), "sdk": _sdk_version()}
@@ -59,16 +59,22 @@ def main() -> int:
     else:
         print(f"\n[2/2] Agent extraction on {args.url}")
         t = time.time()
-        run = client.agent.run(goal=extraction_goal(), url=args.url, browser_profile="stealth",
-                               agent_config=AgentConfig(mode="default", max_steps=40, max_duration_seconds=240),
-                               output_schema=SCHOLARSHIP_SCHEMA)
-        took = round(time.time() - t, 2)
-        print(f"      status={run.status} steps={run.num_of_steps} run_id={run.run_id} time={took}s")
-        if run.result:
-            print(json.dumps(run.result, indent=2, ensure_ascii=False)[:3000])
-        if run.error:
-            print(f"      error: {run.error.message}")
-        evidence["agent"] = {"url": args.url, "seconds": took, "response": run.model_dump(mode="json")}
+        try:
+            run = call_with_config_fallback(
+                lambda cfg: client.agent.run(goal=extraction_goal(), url=args.url, browser_profile="stealth",
+                                             agent_config=cfg, output_schema=SCHOLARSHIP_SCHEMA),
+                mode="default", max_steps=40, max_duration_seconds=240)
+            took = round(time.time() - t, 2)
+            print(f"      status={run.status} steps={run.num_of_steps} run_id={run.run_id} time={took}s")
+            if run.result:
+                print(json.dumps(run.result, indent=2, ensure_ascii=False)[:3000])
+            if run.error:
+                print(f"      error: {run.error.message}")
+            evidence["agent"] = {"url": args.url, "seconds": took, "response": run.model_dump(mode="json")}
+        except Exception as exc:        # still save the Search evidence, and record what the API said
+            took = round(time.time() - t, 2)
+            print(f"      AGENT FAILED after {took}s: {exc}")
+            evidence["agent"] = {"url": args.url, "seconds": took, "error": str(exc)}
 
     os.makedirs(os.path.join(ROOT, "evidence"), exist_ok=True)
     path = os.path.join(ROOT, "evidence", f"smoke_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")

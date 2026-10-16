@@ -94,8 +94,8 @@ Image: `deck/architecture.png`.
 
 - **Why a real browser:** JS-only `.gov.in` pages come back empty from Fetch; those are exactly the ones routed first to the Agent.
 - **Safety contract in the goal and in config:** never Submit/Pay, no accounts, no OTP/captcha/passwords, no uploads, no Aadhaar/bank numbers; stop and report. The hosted practice form returns **403 BLOCKED** on any POST.
-- **Evidence:** `evidence/smoke_<ts>.json` — Search top-5 and an Agent extraction with status, steps and seconds `[FILL IN after running smoke_test.py]`.
-- **Challenges we hit:** no India proxy (US/GB/CA/DE/FR/JP/AU) so some portals block cloud browsers → treated as expected failures with snippet fallback; login/OTP walls → agent stops early by design; `output_schema` accepts only basic JSON-schema keywords.
+- **Evidence:** `evidence/smoke_20261016_070313.json` — Search: 7 real NSP results in 1.2 s; Agent: AICTE Pragati page extracted, status COMPLETED, 10 steps, 487 s, with amount (₹50,000/yr), ₹8 lakh income cap, 10 documents.
+- **Challenges we hit:** `max_steps` / `max_duration_seconds` turned out to be a gated beta feature (API: "not enabled for custom max steps") → client retries once without them, safety stays in strict mode + the never-submit goal + the 403 guard; stealth Agent runs take ~8 min each on our account → all extractions run in parallel and results stream in as each finishes; no India proxy (US/GB/CA/DE/FR/JP/AU) so some portals block cloud browsers → expected failures with snippet fallback; login/OTP walls → agent stops early by design; `output_schema` accepts only basic JSON-schema keywords.
 
 *Note: Spend 40 seconds here. Show the evidence JSON. Say "free, free, credits, free, credits".*
 Image: `deck/assets/05-prefill-live.png` + a screenshot of the evidence JSON.

@@ -12,6 +12,7 @@ Modes:  live (key present) · mock (MOCK=1 or no key) · replay (DEMO_REPLAY=1)
 from __future__ import annotations
 
 import concurrent.futures as cf
+import itertools
 import os
 import re
 import time
@@ -137,6 +138,43 @@ def client():
 def classify_domain(url: str) -> str:
     host = (urlparse(url).hostname or "").lower()
     return "government" if host.endswith(GOV_TLDS) else "private"
+
+
+# --------------------------------------------------------------------------- #
+# AgentConfig with graceful fallback for gated features
+# --------------------------------------------------------------------------- #
+# Observed on 2026-10-16: `max_steps` (and possibly `max_duration_seconds`) are a beta feature; accounts not in
+# the beta get PermissionDeniedError "not enabled for custom max steps". We try the full config once, and if the
+# API refuses it we retry without the gated fields. Safety then rests on mode="strict" + the NEVER_SUBMIT goal.
+_GATED_FIELDS_OK: bool | None = None       # None = unknown, True = allowed, False = refused once
+
+
+def agent_config(mode: str = "default", max_steps: int | None = None, max_duration_seconds: int | None = None):
+    from tinyfish import AgentConfig
+    if _GATED_FIELDS_OK is False:
+        return AgentConfig(mode=mode)
+    return AgentConfig(mode=mode, max_steps=max_steps, max_duration_seconds=max_duration_seconds)
+
+
+def is_gated_config_error(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return "max steps" in msg or "max_steps" in msg or "max duration" in msg or "beta program" in msg
+
+
+def call_with_config_fallback(fn, mode: str, max_steps: int | None, max_duration_seconds: int | None):
+    """fn(config) -> result. Retries once without gated fields if the API refuses them."""
+    global _GATED_FIELDS_OK
+    try:
+        out = fn(agent_config(mode, max_steps, max_duration_seconds))
+        if _GATED_FIELDS_OK is None:
+            _GATED_FIELDS_OK = True
+        return out
+    except Exception as exc:
+        if _GATED_FIELDS_OK is not False and is_gated_config_error(exc):
+            _GATED_FIELDS_OK = False
+            from tinyfish import AgentConfig
+            return fn(AgentConfig(mode=mode))
+        raise
 
 
 # --------------------------------------------------------------------------- #
@@ -310,18 +348,16 @@ def _is_thin(result: dict[str, Any]) -> bool:
 
 def extract_scheme(cand: dict[str, Any]) -> tuple[dict[str, Any], bool]:
     """Run the Agent on one page (cached). Returns (scheme, cache_hit). Never raises."""
-    from tinyfish import AgentConfig
-
     url = cand["url"]
     gov = cand.get("source_type") == "government"
 
     def run(narrow: bool = False) -> dict[str, Any]:
-        resp = client().agent.run(
-            goal=extraction_goal(narrow), url=url,
-            browser_profile="stealth" if gov else "lite",
-            agent_config=AgentConfig(mode="default", max_steps=40, max_duration_seconds=240),
-            output_schema=SCHOLARSHIP_SCHEMA,
-        )
+        resp = call_with_config_fallback(
+            lambda cfg: client().agent.run(
+                goal=extraction_goal(narrow), url=url,
+                browser_profile="stealth" if gov else "lite",
+                agent_config=cfg, output_schema=SCHOLARSHIP_SCHEMA),
+            mode="default", max_steps=40, max_duration_seconds=240)
         if resp.status != "COMPLETED" or not resp.result:
             msg = resp.error.message if resp.error else f"status {resp.status}"
             raise RuntimeError(msg)
@@ -470,6 +506,10 @@ def prefill_goal(fields: list[dict[str, str]], scheme_name: str) -> str:
     )
 
 
+def _chain(first, rest):
+    return itertools.chain([first], rest)
+
+
 def prefill_events(url: str, profile: Profile, scheme_name: str = "the scholarship",
                    mock_delay: float | None = None) -> Iterator[dict[str, Any]]:
     """Yield {type: STARTED|STREAMING_URL|PROGRESS|HEARTBEAT|COMPLETE|ERROR, ...} dicts."""
@@ -479,17 +519,25 @@ def prefill_events(url: str, profile: Profile, scheme_name: str = "the scholarsh
         yield from mock_data.mock_prefill_events(fields, url, delay=delay)
         return
 
-    from tinyfish import (AgentConfig, APIStatusError, APITimeoutError, CompleteEvent, HeartbeatEvent,
+    from tinyfish import (APIStatusError, APITimeoutError, CompleteEvent, HeartbeatEvent,
                           ProgressEvent, StartedEvent, StreamingUrlEvent)
     goal = prefill_goal(fields, scheme_name)
     saw_url = False
+
+    def open_stream(cfg):
+        stream = client().agent.stream(goal=goal, url=url, browser_profile="stealth", agent_config=cfg,
+                                       output_schema=PREFILL_SCHEMA)
+        it = iter(stream.__enter__())
+        first = next(it)                       # forces the request; gated-config errors surface here
+        return stream, it, first
+
     try:
-        with client().agent.stream(
-            goal=goal, url=url, browser_profile="stealth",
-            agent_config=AgentConfig(mode="strict", max_steps=60, max_duration_seconds=300),
-            output_schema=PREFILL_SCHEMA,
-        ) as stream:
-            for ev in stream:
+        stream, it, first = call_with_config_fallback(open_stream, "strict", 60, 300)
+        if _GATED_FIELDS_OK is False:
+            yield {"type": "PROGRESS", "message": "Note: max_steps is a gated beta feature on this account; "
+                                                  "running in strict mode with the never-submit goal only."}
+        with stream:
+            for ev in _chain(first, it):
                 if isinstance(ev, StartedEvent):
                     yield {"type": "STARTED", "run_id": ev.run_id, "message": "Agent started (strict mode, max 60 steps)"}
                 elif isinstance(ev, StreamingUrlEvent):

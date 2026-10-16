@@ -4,7 +4,5 @@ __pycache__/
 venv/
 .env
 .cache/
-evidence/*.json
-!evidence/.gitkeep
 scripts/__pycache__/
 .DS_Store

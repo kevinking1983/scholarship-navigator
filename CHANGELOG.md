@@ -40,5 +40,15 @@
 ## Phase 4 — deck
 - `deck/DECK.md` (12 slides, every number sourced or marked `[SOURCE NEEDED]` / measured), `deck/architecture.mmd` + rendered PNG.
 
+## Live verification (2026-10-16, real TinyFish key)
+- Smoke test passed: Search returned 7 real NSP results in 1.2 s; Agent extracted the AICTE Pragati page
+  (status COMPLETED, 10 steps, 487 s, stealth profile) → `evidence/smoke_20261016_070313.json`.
+- **TinyFish behaved differently from the brief:** `AgentConfig(max_steps=…)` is a gated beta feature; the API
+  answered `PermissionDeniedError: Your account is not enabled for custom max steps yet`. The client now tries the
+  full config once and falls back to `AgentConfig(mode=…)` only, remembering the answer for the process. Safety
+  then rests on strict mode plus the never-submit goal, and the practice form's 403 guard. Test added.
+- Agent runs on this account take ~8 min each with the stealth profile, so discovery runs all TOP_K extractions in
+  parallel (`EXTRACT_WORKERS=6`) and the replay snapshot caps inter-event gaps at 8 s.
+
 ## Phase 5 — polish
 - README final pass, `SUBMISSION_CHECKLIST.md`, edge cases (no results, all closed, TinyFish error → friendly message + sample fallback).
