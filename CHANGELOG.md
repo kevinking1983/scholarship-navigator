@@ -47,8 +47,17 @@
   answered `PermissionDeniedError: Your account is not enabled for custom max steps yet`. The client now tries the
   full config once and falls back to `AgentConfig(mode=…)` only, remembering the answer for the process. Safety
   then rests on strict mode plus the never-submit goal, and the practice form's 403 guard. Test added.
-- Agent runs on this account take ~8 min each with the stealth profile, so discovery runs all TOP_K extractions in
-  parallel (`EXTRACT_WORKERS=6`) and the replay snapshot caps inter-event gaps at 8 s.
+- Agent runs on this account take 1–8 min each with the stealth profile (3–21 steps), so discovery runs all TOP_K
+  extractions in parallel (`EXTRACT_WORKERS=6`) and the replay snapshot caps inter-event gaps at 8 s.
+- Two bugs found only by live runs, both fixed with tests: (1) the gated-config fallback raced under parallel
+  extraction (only the first thread retried); (2) URL de-duplication stripped query strings, collapsing every
+  MahaDBT scheme page (`SchemeData?str=…`) into one candidate. The Agent budget now also prefers government pages
+  after JS-only ones.
+- `demo/replay_snapshot.json` is now a genuine recorded run (Telangana sample student: 33 pages found, 6 extracted,
+  3 likely-eligible government schemes incl. PMS-SC with real amounts). Screenshots re-captured from it.
+- Live timings for the three sample students are in `evidence/live_bench.json` and on deck slide 10.
+- Extraction caveat seen live: the Pragati page's "special provisions for NE states / UTs" paragraph was read as a
+  state restriction. The UI already says "verify on the official portal"; kept as an honest limitation.
 
 ## Phase 5 — polish
 - README final pass, `SUBMISSION_CHECKLIST.md`, edge cases (no results, all closed, TinyFish error → friendly message + sample fallback).

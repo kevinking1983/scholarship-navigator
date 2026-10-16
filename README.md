@@ -18,7 +18,7 @@ Every year crores of rupees in scholarships go unclaimed because eligible studen
 | 4. Match | none (`backend/matcher.py`) | free | Synonym normalisation → weighted rules → score, verdict, ✓ reasons, ✗ blockers, ⚠ cautions; closed schemes last |
 | 5. Apply | **Agent stream** `client.agent.stream(…, browser_profile="stealth", AgentConfig(mode="strict", max_steps=60, max_duration_seconds=300), output_schema=PREFILL_SCHEMA)` | credits | Fills the form, streams `STARTED → STREAMING_URL → PROGRESS… → COMPLETE` to the browser, returns `{filled, needs_manual_input, stopped_before}`. **Never submits.** |
 
-`output_schema` uses only `type / properties / items / required` (anything else is rejected by the API). There is no India proxy (US/GB/CA/DE/FR/JP/AU only), so some `.gov.in` portals may block the cloud browser; failures are expected and handled, not fatal.
+`output_schema` uses only `type / properties / items / required` (anything else is rejected by the API). `AgentConfig.max_steps` / `max_duration_seconds` are a gated beta feature: if the API refuses them the client retries once with `mode` only (see CHANGELOG). There is no India proxy (US/GB/CA/DE/FR/JP/AU only), so some `.gov.in` portals may block the cloud browser; failures are expected and handled, not fatal. Live evidence: `evidence/smoke_20261016_070313.json`, `evidence/live_bench.json`.
 
 ## Safety rules (enforced in code, not just in prose)
 
@@ -50,7 +50,7 @@ uvicorn backend.main:app --reload --port 8000
 |---|---|---|
 | **Live** | key in `.env` | Real TinyFish Search → Fetch → Agent; header pill "Live · TinyFish" |
 | **Sample** | no key, or `MOCK=1` | Labelled sample schemes, simulated pre-fill (same UI path, including `STREAMING_URL`) |
-| **Replay** | `DEMO_REPLAY=1` | Replays `demo/replay_snapshot.json` with realistic delays — works on bad venue Wi-Fi. Record it from a genuine run with `python scripts/record_replay.py` (needs a key; the shipped snapshot was recorded from sample data and is labelled as such). `DEMO_REPLAY_SPEED=2` plays faster. |
+| **Replay** | `DEMO_REPLAY=1` | Replays `demo/replay_snapshot.json` (a genuine live run recorded on 2026-10-16) with realistic delays — works on bad venue Wi-Fi. Re-record any time with `python scripts/record_replay.py` (needs a key). `DEMO_REPLAY_SPEED=2` plays faster. |
 
 Other knobs (`.env.example`): `TOP_K`, `EXTRACT_WORKERS`, `RETRY_THIN_EXTRACTION=1` (second, narrower Agent goal when an extraction comes back mostly empty), `CACHE=0`, `PUBLIC_BASE_URL`.
 

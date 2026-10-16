@@ -7,10 +7,10 @@ Deadline: **[FILL IN DATE/TIME]** · target: everything below done **24 hours be
 - [ ] Deck covers, in order: Team Details · Problem Statement · Proposed Solution · Target Users · Technical Architecture & Stack · TinyFish Integration · Scalability, Feasibility & Use Case · MVP/Prototype (screenshots + video link). (`deck/DECK.md` is in that order.)
 
 ## Evidence to generate with a real key (not possible without one)
-- [ ] `python backend/smoke_test.py` → `evidence/smoke_<ts>.json` exists; paste the Search + Agent result on slide 9.
-- [ ] `python scripts/record_replay.py` with the key → `demo/replay_snapshot.json` is a **genuine** live run (`recorded_from: "live"`); commit it.
-- [ ] Run the live demo end-to-end 3× for the 3 sample students; record average discover time and credits per run → slide 10 (replace `[MEASURED]`).
-- [ ] Re-run `python scripts/capture.py --mode replay` so screenshots show real extracted data (no *Sample* badge).
+- [x] `python backend/smoke_test.py` → `evidence/smoke_20261016_070313.json` (Search 7 results in 1.2 s; Agent COMPLETED, 10 steps, 487 s). Paste on slide 9.
+- [x] `demo/replay_snapshot.json` is a genuine live run (`recorded_from: "live"`, 2026-10-16).
+- [x] Live discovery run for all 3 sample students; timings in `evidence/live_bench.json` and on slide 10. Credits: read the exact number from the TinyFish dashboard for the deck (the API does not return it).
+- [x] Screenshots re-captured from the genuine replay (Agent-extracted badges, no *Sample*).
 - [ ] Confirm one real public CSR form the agent can open without login; note any portal that blocked the cloud browser (good "challenges" material).
 
 ## Deck & video
