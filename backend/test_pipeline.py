@@ -309,6 +309,29 @@ def test_gated_agent_config_fallback():
     tf._GATED_FIELDS_OK = None
 
 
+def test_gated_fallback_retries_in_every_parallel_thread():
+    """Six parallel extractions all get the gated error at once; each must retry, not just the first."""
+    import concurrent.futures as cf
+    import threading
+    tf._GATED_FIELDS_OK = None
+    gate = threading.Barrier(6)
+    attempts = []
+
+    def fake(cfg):
+        d = cfg.model_dump(exclude_none=True)
+        attempts.append(d)
+        if "max_steps" in d:
+            gate.wait(timeout=5)          # make all six fail simultaneously
+            raise PermissionError("Your account is not enabled for custom max steps yet.")
+        return "ok"
+
+    with cf.ThreadPoolExecutor(max_workers=6) as pool:
+        results = list(pool.map(lambda _: tf.call_with_config_fallback(fake, "default", 40, 240), range(6)))
+    assert results == ["ok"] * 6, results
+    assert sum(1 for a in attempts if "max_steps" in a) == 6 and sum(1 for a in attempts if a == {"mode": "default"}) == 6
+    tf._GATED_FIELDS_OK = None
+
+
 def test_profile_from_dict_is_forgiving():
     p = Profile.from_dict({"family_income": "2,50,000", "marks_12": "88%", "year": "2", "minority": "yes", "pwd": "no",
                            "state": "TS"})

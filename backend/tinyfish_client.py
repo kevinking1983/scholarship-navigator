@@ -162,17 +162,23 @@ def is_gated_config_error(exc: Exception) -> bool:
 
 
 def call_with_config_fallback(fn, mode: str, max_steps: int | None, max_duration_seconds: int | None):
-    """fn(config) -> result. Retries once without gated fields if the API refuses them."""
+    """fn(config) -> result. Retries once without gated fields if the API refuses them.
+
+    Thread-safe by construction: whether to retry depends on what THIS call sent, not on the shared flag
+    (parallel extractions all fail at once; each must retry on its own).
+    """
     global _GATED_FIELDS_OK
+    from tinyfish import AgentConfig
+    cfg = agent_config(mode, max_steps, max_duration_seconds)
+    sent_gated = cfg.max_steps is not None or cfg.max_duration_seconds is not None
     try:
-        out = fn(agent_config(mode, max_steps, max_duration_seconds))
-        if _GATED_FIELDS_OK is None:
+        out = fn(cfg)
+        if sent_gated and _GATED_FIELDS_OK is None:
             _GATED_FIELDS_OK = True
         return out
     except Exception as exc:
-        if _GATED_FIELDS_OK is not False and is_gated_config_error(exc):
+        if sent_gated and is_gated_config_error(exc):
             _GATED_FIELDS_OK = False
-            from tinyfish import AgentConfig
             return fn(AgentConfig(mode=mode))
         raise
 
