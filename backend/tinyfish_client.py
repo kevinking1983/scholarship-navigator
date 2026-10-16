@@ -313,8 +313,9 @@ def fetch_filter(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
             if relevant or (c["needs_agent"] and c.get("source_type") == "government"):
                 c["page_excerpt"] = text[:1500]
                 kept.append(c)
-    # Agent budget: pages Fetch could not read go first (highest value), then search order
-    kept.sort(key=lambda c: (0 if c["needs_agent"] else 1, c.get("position", 99)))
+    # Agent budget: pages Fetch could not read go first (highest value), then government portals, then search order
+    kept.sort(key=lambda c: (0 if c["needs_agent"] else 1, 0 if c.get("source_type") == "government" else 1,
+                             c.get("position", 99)))
     return kept
 
 

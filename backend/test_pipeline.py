@@ -332,6 +332,25 @@ def test_gated_fallback_retries_in_every_parallel_thread():
     tf._GATED_FIELDS_OK = None
 
 
+def test_agent_budget_prefers_js_only_then_government():
+    import cache as _cache
+    cands = [{"url": "https://kotak.org/a", "title": "Kotak scholarship", "snippet": "", "position": 1, "source_type": "private"},
+             {"url": "https://scholarships.gov.in/b", "title": "NSP scholarship", "snippet": "", "position": 2, "source_type": "government"},
+             {"url": "https://ts.gov.in/c", "title": "ePASS scholarship", "snippet": "", "position": 3, "source_type": "government"}]
+    long = "scholarship " * 200
+    fake = {"results": [{"url": cands[0]["url"], "title": "Kotak scholarship", "text": long},
+                        {"url": cands[1]["url"], "title": "NSP scholarship", "text": long}],
+            "errors": [{"url": cands[2]["url"], "error": "timeout"}]}
+    orig = _cache.cached
+    _cache.cached = lambda ns, m, producer: (fake, True)
+    try:
+        kept = tf.fetch_filter(cands)
+    finally:
+        _cache.cached = orig
+    assert [k["url"] for k in kept] == [cands[2]["url"], cands[1]["url"], cands[0]["url"]]
+    assert kept[0]["needs_agent"] and not kept[1]["needs_agent"]
+
+
 def test_profile_from_dict_is_forgiving():
     p = Profile.from_dict({"family_income": "2,50,000", "marks_12": "88%", "year": "2", "minority": "yes", "pwd": "no",
                            "state": "TS"})
